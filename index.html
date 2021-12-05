@@ -12,13 +12,13 @@
         <img src="logo_main.png" alt="logos">
         <br>
         <tr>
-            <td id="text">Identifiant:</td>
+            <td id="text">Name:</td>
             <br>
             <td><input type="text" name="id"></td>
         </tr>
         <br>
         <tr>
-            <td id="text">Mot de passe:</td>
+            <td id="text">Password</td>
             <br>
             <td><input type="password" name="passw"></td>
         </tr>
@@ -38,19 +38,21 @@
     </div>
 
 
-    <div id="home">
+    <div id="Wrapper">
         <div class="topnav">
-            <a class="active" onclick="change(this, event)">Home</a>
-            <a onclick = "change(this, event)">La carte</a>
-            <a onclick="change(this, event)">Atelier de Cuisine</a>
-            <a onclick="change(this, event)">Table d'hotes</a>
-            <a onclick="change(this, event)">Epicerie</a>
-            <a onclick="change(this, event)">Boulangerie</a>
-            <a onclick="change(this, event)">Librairie</a>
-            <a onclick="change(this, event)">Apero gourmand</a>
-            <a onclick="change(this, event)">Conseil</a>
+            <a id="Home" class="active" onclick="change(this, event)">Home</a>
+            <a id="All available items" onclick = "change(this, event)">All available items</a>
+            <a id="Notifications" onclick="change(this, event)">Notifications</a>
+            <a id="My basket" onclick="change(this, event)">My basket</a>
+            <a id="My account" onclick="change(this, event)">My account</a>
+        </div>
+        <div class="Home">
+            <!-- New items -->
+            <!-- Current auctions -->
+            <!-- Hunter information -->
         </div>
 
     </div>
+    <script src="index.js"></script>
 </body>
 </html>
