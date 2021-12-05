@@ -1,0 +1,52 @@
+#login{
+    position: absolute;
+    color: white;
+    text-align: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: red;
+    visibility: hidden;
+}
+
+#login input{
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+#login h3{
+    text-decoration-line: underline;
+}
+
+#main{
+    font-family: arial;
+    background-color: black;
+}
+
+
+.topnav {
+    background-color: #310a0a;
+    overflow: hidden;
+    padding-left: 15%;
+    position: relative;
+    font-family: bleu;
+    margin-bottom: 20px;
+  }
+.topnav a {
+float: left;
+color: #f2f2f2;
+text-align: center;
+padding: 14px 16px;
+text-decoration: none;
+font-size: 20px;
+}
+
+.topnav a:hover {
+background-color: rgb(255, 0, 0);
+color: black;
+}
+.topnav a.active {
+background-color: #ffffff;
+color: black;
+}
