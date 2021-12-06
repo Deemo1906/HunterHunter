@@ -16,23 +16,24 @@ $database = "hxh";
 	$pseudo = mysqli_real_escape_string($db_handle,htmlspecialchars($_POST['pseudo'])); 
 	$mail = mysqli_real_escape_string($db_handle,htmlspecialchars($_POST['mail'])); 
     $passw = mysqli_real_escape_string($db_handle,htmlspecialchars($_POST['passw']));
+    $choice = mysqli_real_escape_string($db_handle,htmlspecialchars($_POST['choice']));
+    
     
    
 
 
-    if(isset($_POST['type']))
-    {
-    	if(in_array('customer',$_POST['test']))
+    
+    	if($choice=="customer")
     	{
     mysql_query("INSERT INTO `client` (`Name`, `Mail`, `Pseudo`, `Password`)
 	VALUES(‘’, '$name', '$mail', '$Pseudo', '$passw')");
 		}
 
-		if(in_array('seller',$_POST['test']))
+		if($choice=="seller")
     	{
     mysql_query("INSERT INTO `vendeur` (`Name`, `Mail`, `Pseudo`, `Password`)
 	VALUES(‘’, '$name', '$mail', '$Pseudo', '$passw')");
-		}
+		
 
 
 	}

@@ -31,13 +31,13 @@
         </tr>
 
         <tr>
-            <td id="text">Seller <input type="checkbox"  name="type[]"value="seller">
+            <td id="text">Seller <input type="radio"  name="choice"value="seller">
                 </td>
                 <br>
 
         </tr>
         <tr>
-            <td id="text">Customer <input type="checkbox"  name="type[]"value="customer">
+            <td id="text">Customer <input type="radio"  name="choice"value="customer">
                 </td>
                 <br>
 
