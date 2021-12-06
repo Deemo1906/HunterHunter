@@ -29,6 +29,21 @@
             <br>
             <td><input type="password" name="passw"></td>
         </tr>
+
+        <tr>
+            <td id="text">Seller <input type="checkbox"  name="type[]"value="seller">
+                </td>
+                <br>
+
+        </tr>
+        <tr>
+            <td id="text">Customer <input type="checkbox"  name="type[]"value="customer">
+                </td>
+                <br>
+
+        </tr>
+
+
         <br>
         <tr>
         <br>
