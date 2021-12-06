@@ -49,15 +49,15 @@
        //header('Location: login.php?erreur=2'); // utilisateur ou mot de passe vide
     	echo"champs vides";
     }
+//fermer la connexion
+	mysqli_close($db_handle);
 
 	
 	}
 
 	
 
-	//fermer la connexion
-	mysqli_close($db_handle);
-
+	
 	?>
 
 	
