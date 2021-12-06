@@ -203,3 +203,7 @@ h3{
   text-align: center;
   float: none;
 }
+
+#info dl{
+  padding-left: 10%;
+}

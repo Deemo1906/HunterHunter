@@ -5,14 +5,14 @@ function change(el, e){
       document.getElementById("itempageB").style.position = "absolute";
     }
     console.log(document.getElementsByClassName("active")[0].id);
-    if(document.getElementsByClassName("active")[0].id == "Home"){
+    if(document.getElementsByClassName("active")[0].id == "Home" || (document.getElementsByClassName("active")[0].id == "My account")){
       document.getElementsByClassName(document.getElementsByClassName("active")[0].id)[0].style.visibility = "hidden";
     document.getElementsByClassName(document.getElementsByClassName("active")[0].id)[0].style.position = "absolute";
     }
     document.getElementsByClassName("active")[0].className = "";
     el.className = "active";
     console.log(el.id)
-    if(el.id == "Home"){
+    if(el.id == "Home" || el.id =="My account"){
       document.getElementsByClassName(el.id)[0].style.visibility = "visible";
       document.getElementsByClassName(el.id)[0].style.position = "relative";
     }
