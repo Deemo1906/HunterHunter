@@ -51,7 +51,7 @@
                         echo "<p style='color:red'>Utilisateur ou mot de passe incorrect<br> </p>";
                 }
         ?>
-        <p>Si vous n'avez pas de compte Hunter: <a href="sign.php">S'inscrire</a></p>
+        <p>Si vous n'avez pas de compte Hunter: Cliquez <a href="sign.php">ici</a></p>
         </tr>
         <h3 style="color: red;">Any unauthorized use of this site will result in deadly force</h3>
     </div>
