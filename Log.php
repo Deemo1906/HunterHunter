@@ -40,7 +40,7 @@
         </tr>
        
         <tr>
-        <br>
+        <br><br><br>
         <td colspan="2" align="center">
         <input type="submit" name="submit" value="Login">
         </td>
@@ -51,6 +51,7 @@
                         echo "<p style='color:red'>Utilisateur ou mot de passe incorrect<br> </p>";
                 }
         ?>
+        <p><a href="sign.php">S'inscrire</a></p>
         </tr>
         <h3 style="color: red;">Any unauthorized use of this site will result in deadly force</h3>
     </div>
