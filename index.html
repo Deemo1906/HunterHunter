@@ -8,7 +8,7 @@
     <title>Hunter association official site</title>
 </head>
 <body id="main">
-    <div id = "login">
+    <div id = "login"style="visibility: hidden;position: absolute;">
         <img src="logo_main.png" alt="logos">
         <br>
         <tr>
@@ -46,7 +46,7 @@
             <a id="My basket" onclick="change(this, event)">My basket</a>
             <a id="My account" onclick="change(this, event)">My account</a>
         </div>
-        <div class="Home"  style="visibility: hidden;position: absolute;">
+        <div class="Home">
             <!-- New items -->
             <div id = "left">
                 <h1 style="color: white; text-align: center; font-family: bleu;">New items</h1>
@@ -80,7 +80,7 @@
                 <h1 style="text-align: center;">Current auctions</h1>
                 <div class="Aimg" id="boximg">
                     <!-- auctions with timer under image -->
-                    <img src="img2.jpg" onclick="gotoitem(this)">
+                    <img src="img2.jpg" onclick="gotoitem(this, event)">
                     <img src="img2.jpg">
                     <img src="img2.jpg" >
 
@@ -90,7 +90,7 @@
             <!-- Hunter information -->
         </div>
         <div id="itempageB" style="visibility: hidden;position: absolute;">
-            <div id="img3040">
+            <div id="img3040" >
                 <img src="img2.jpg">
             </div>
             <div id="desc">
@@ -100,6 +100,9 @@
                     <dt>Date of arrival</dt>
                     <dl>19-06-2001</dl>
                 </dl>
+            </div>
+            <div id="textd">
+                <h3>Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum ab fuga eveniet sed doloremque corrupti omnis aspernatur nisi nesciunt? Doloribus rerum exercitationem, aut voluptate dolor commodi deserunt sint iure illum.</h3>
             </div>
 
         </div>

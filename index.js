@@ -32,3 +32,15 @@ function showSlides(n) {
   slides[slideIndex-1].style.display = "block";
   dots[slideIndex-1].className += " active";
 }
+
+
+function gotoitem(el, e){
+  e.preventDefault();
+  document.getElementById("itempageB").style.visibility = "visible";
+  document.getElementById("itempageB").style.position = "relative";
+  document.getElementsByClassName("active")[0].className = "";
+  document.getElementById("Home").className = "active";
+  document.getElementsByClassName("Home")[0].visibility = "invisible";
+
+  document.getElementsByClassName("Home")[0].position = "absolute";
+}
