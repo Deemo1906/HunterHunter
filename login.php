@@ -35,13 +35,13 @@
         }
         else
         {
-           header('Location: login.html?erreur=1'); // utilisateur ou mot de passe incorrect
+           header('Location: Log.php?erreur=1'); // utilisateur ou mot de passe incorrect
         	
         }
     }
     else
     {
-       header('Location: login.html?erreur=2'); // utilisateur ou mot de passe vide
+       header('Location: Log.php?erreur=2'); // utilisateur ou mot de passe vide
     	
     }
 //fermer la connexion
