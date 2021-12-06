@@ -50,36 +50,14 @@
     	echo"champs vides";
     }
 
-
-
-
 	
-	
-
-	
-				
-
-        
-
-
-        
-		
 	}
 
-	else {
-		echo"<br> database not found ";
-	}
+	
 
 	//fermer la connexion
 	mysqli_close($db_handle);
 
 	?>
 
-	else {
-		echo"<br> database not found ";
-	}
-
-	//fermer la connexion
-	mysqli_close($db_handle);
-
-	?>
+	
