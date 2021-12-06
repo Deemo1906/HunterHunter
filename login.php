@@ -31,8 +31,10 @@
         if($count!=0) // nom d'utilisateur et mot de passe correctes
         {
             
-
-           header('Location: index.html?nom=$id&mdp=$passw&compte=$type');
+        		$_SESSION['name'] = $id;
+        		$_SESSION['mdp'] = $passw;
+        		$_SESSION['Atype'] = $type;
+           header('Location: index.html');
         
         }
         else
