@@ -25,14 +25,16 @@ $database = "hxh";
     
     	if($choice=="customer")
     	{
-    mysql_query("INSERT INTO `client` (`Name`, `Mail`, `Pseudo`, `Password`)
-	VALUES(‘’, '$name', '$mail', '$Pseudo', '$passw')");
+    		$sql = "INSERT INTO client (Name, Mail, Pseudo, Password)
+	VALUES( $name, $mail, $pseudo, $passw)";
+    mysqli_query($db_handle,$sql);
 		}
 
 		if($choice=="seller")
     	{
-    mysql_query("INSERT INTO `vendeur` (`Name`, `Mail`, `Pseudo`, `Password`)
-	VALUES(‘’, '$name', '$mail', '$Pseudo', '$passw')");
+    		$sql="INSERT INTO vendeur (Name, Mail, Pseudo, Password)
+	VALUES(‘’, $name, $mail, $pseudo, $passw)";
+    mysqli_query($db_handle,$sql);
 		
 
 
