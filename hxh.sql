@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : lun. 06 déc. 2021 à 10:50
+-- Généré le : lun. 06 déc. 2021 à 12:51
 -- Version du serveur :  5.7.31
 -- Version de PHP : 7.3.21
 
@@ -35,7 +35,14 @@ CREATE TABLE IF NOT EXISTS `admin` (
   `Pseudo` varchar(255) NOT NULL,
   `Password` varchar(255) NOT NULL,
   PRIMARY KEY (`IdAdmin`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `admin`
+--
+
+INSERT INTO `admin` (`IdAdmin`, `Name`, `Mail`, `Pseudo`, `Password`) VALUES
+(1, 'NPFH', 'hugo.haidar@edu.ece.fr', 'Netero', 'HXH2021');
 
 -- --------------------------------------------------------
 
@@ -97,7 +104,14 @@ CREATE TABLE IF NOT EXISTS `login` (
   `Password` varchar(255) NOT NULL,
   `AccountType` varchar(255) NOT NULL,
   PRIMARY KEY (`IdLogin`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `login`
+--
+
+INSERT INTO `login` (`IdLogin`, `Pseudo`, `Password`, `AccountType`) VALUES
+(1, 'Netero', 'HXH2021', 'Admin');
 
 -- --------------------------------------------------------
 
