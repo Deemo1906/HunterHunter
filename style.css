@@ -5,7 +5,6 @@
     left: 50%;
     transform: translate(-50%, -50%);
     color: red;
-    visibility: hidden;
 }
 
 #login input{
@@ -25,7 +24,7 @@
 
 
 .topnav {
-    /* visibility: hidden; */
+     visibility: hidden; 
     background-color: #310a0a;
     overflow: hidden;
     padding-left: 25%;
@@ -171,7 +170,6 @@ color: black;
 }
 
 #img3040{
-  
   width: 50%;
   height: 50%;
 }
@@ -184,7 +182,6 @@ color: black;
 }
 
 #desc{
- 
   width: 50%;
   height: 50%;
   float: right;
