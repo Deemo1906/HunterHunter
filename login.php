@@ -1,5 +1,5 @@
 <?php
-	
+	session_start();
 	if(isset($_POST['id']) && isset($_POST['passw']))
 	{
 	echo"<meta charset=\"utf-8\">";
@@ -35,13 +35,13 @@
         }
         else
         {
-           //header('Location: login.php?erreur=1'); // utilisateur ou mot de passe incorrect
+           //header('Location: login.html?erreur=1'); // utilisateur ou mot de passe incorrect
         	echo"identifiants incorrects";
         }
     }
     else
     {
-       //header('Location: login.php?erreur=2'); // utilisateur ou mot de passe vide
+       //header('Location: login.html?erreur=2'); // utilisateur ou mot de passe vide
     	echo"champs vides";
     }
 //fermer la connexion
