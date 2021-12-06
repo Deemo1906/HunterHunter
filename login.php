@@ -15,11 +15,6 @@
 	//$id = isset($_POST["id"])? $_POST["id"] : "";
 	//$passw = isset($_POST["passw"])? $_POST["passw"] : "";
 	
-	
-
-	
-
-	
 	// on applique les deux fonctions mysqli_real_escape_string et htmlspecialchars
     // pour éliminer toute attaque de type injection SQL et XSS
     $id = mysqli_real_escape_string($db_handle,htmlspecialchars($_POST['id'])); 
@@ -54,10 +49,6 @@
 
 	
 	}
-
-	
-
-	
 	?>
 
 	
