@@ -8,23 +8,23 @@
     <title>Hunter association official site</title>
 </head>
 <body id="main">
-    <form action="login.php" method="post">
+    <form action="sign_up.php" method="post">
     <div id = "login">
         <img src="logo_main.png" alt="logos">
         <br>
         <tr>
             <td id="text">Name:</td>
             <br>
-            <td><input type="text" name="id"></td>
+            <td><input type="text" name="name"></td>
         </tr>
         <tr>
             <td id="text">Pseudo:</td>
             <br>
-            <td><input type="text" name="id"></td>
+            <td><input type="text" name="pseudo"></td>
         </tr>
         <td id="text">Mail:</td>
             <br>
-            <td><input type="text" name="id"></td>
+            <td><input type="text" name="mail"></td>
             <td id="text">Password</td>
             <br>
             <td><input type="password" name="passw"></td>
@@ -33,7 +33,7 @@
         <tr>
         <br>
         <td colspan="2" align="center">
-        <input type="submit" name="submit" value="Login">
+        <input type="submit" name="submit" value="Sign-up">
         </td>
         </tr>
         <h3 style="color: red;">Any unauthorized use of this site will result in deadly force</h3>
