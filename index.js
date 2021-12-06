@@ -1,7 +1,21 @@
 function change(el, e){
     e.preventDefault();
+    if(document.getElementById("itempageB").style.visibility == "visible"){
+      document.getElementById("itempageB").style.visibility = "hidden";
+      document.getElementById("itempageB").style.position = "absolute";
+    }
+    console.log(document.getElementsByClassName("active")[0].id);
+    if(document.getElementsByClassName("active")[0].id == "Home"){
+      document.getElementsByClassName(document.getElementsByClassName("active")[0].id)[0].style.visibility = "hidden";
+    document.getElementsByClassName(document.getElementsByClassName("active")[0].id)[0].style.position = "absolute";
+    }
     document.getElementsByClassName("active")[0].className = "";
     el.className = "active";
+    console.log(el.id)
+    if(el.id == "Home"){
+      document.getElementsByClassName(el.id)[0].style.visibility = "visible";
+      document.getElementsByClassName(el.id)[0].style.position = "relative";
+    }
 }
 
 var slideIndex = 1;
@@ -30,7 +44,6 @@ function showSlides(n) {
       dots[i].className = dots[i].className.replace(" active", "");
   }
   slides[slideIndex-1].style.display = "block";
-  dots[slideIndex-1].className += " active";
 }
 
 
@@ -40,7 +53,9 @@ function gotoitem(el, e){
   document.getElementById("itempageB").style.position = "relative";
   document.getElementsByClassName("active")[0].className = "";
   document.getElementById("Home").className = "active";
-  document.getElementsByClassName("Home")[0].visibility = "invisible";
+  console.log(document.getElementsByClassName("Home")[0])
+  document.getElementsByClassName("Home")[0].style.visibility = "hidden";
 
-  document.getElementsByClassName("Home")[0].position = "absolute";
+  document.getElementsByClassName("Home")[0].style.position = "absolute";
+  console.log(document.getElementsByClassName("Home")[0].visibility)
 }
