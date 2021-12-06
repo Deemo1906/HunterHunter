@@ -53,27 +53,15 @@ color: black;
 }
 
 #left {
-    float: left;
-    width: 150px;
-    color: white;
-}
-div#left a {
-    display: block;
-    margin: 0 15px 15px 15px;
-    width: 80px;
-    padding-left:10px;
-    padding-right:10px;
-    border: 3px inset #cccccc;
-    text-decoration:white;
+    width: 50%;
+    float:left;
 }
 
-#left h1{
-    color: white;
-}
+
 
 #right {
-    margin-left: 150px;
-    padding: 0 20px 20px 4 0px;
+    width: 50%;
+    float:right;
 }
 
 
@@ -84,9 +72,8 @@ div#left a {
   max-width: 300px;
   max-height: 300px;
   position: relative;
-  margin: auto;
-  float: left;
-  margin-left: 10%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /* Hide the images by default */
@@ -161,7 +148,44 @@ div#left a {
 }
 
 
- h3{
+ h1{
   font-family: bleu;
   color: white;
+}
+
+#boximg{
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.Aimg img{
+  margin-right: 0%;
+  margin-left: 0%;
+  max-height: 250px;
+  max-width: 250px;
+}
+
+#itempageB{
+
+}
+
+#img3040{
+  
+  width: 50%;
+  height: 50%;
+}
+
+#img3040 img{
+  max-width: 250px;
+  max-height: 250px;
+  margin-right: auto;
+  margin-left: 15%;
+}
+
+#desc{
+ 
+  width: 50%;
+  height: 50%;
+  float: right;
 }

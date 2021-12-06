@@ -46,10 +46,10 @@
             <a id="My basket" onclick="change(this, event)">My basket</a>
             <a id="My account" onclick="change(this, event)">My account</a>
         </div>
-        <div class="Home">
+        <div class="Home" style="visibility: hidden; position: absolute;">
             <!-- New items -->
-            <div>
-                <h1 style="color: white; margin-left: 15%; font-family: bleu;">New items</h1>
+            <div id = "left">
+                <h1 style="color: white; text-align: center; font-family: bleu;">New items</h1>
                 <!-- Slideshow container -->
                 <div class="slideshow-container">
 
@@ -77,9 +77,31 @@
             </div>
             <!-- Current auctions -->
             <div class = "auctions" id="right">
-                <h3>Current auctions</h3>
+                <h1 style="text-align: center;">Current auctions</h1>
+                <div class="Aimg" id="boximg">
+                    <!-- auctions with timer under image -->
+                    <img src="img2.jpg" onclick="gotoitem(this)">
+                    <img src="img2.jpg">
+                    <img src="img2.jpg" >
+
+
+                </div>
             </div>
             <!-- Hunter information -->
+        </div>
+        <div id="itempageB">
+            <div id="img3040">
+                <img src="img2.jpg">
+            </div>
+            <div id="desc">
+                <dl style="color: white;">
+                    <dt>Price</dt>
+                    <dl>150 000</dl>
+                    <dt>Date of arrival</dt>
+                    <dl>19-06-2001</dl>
+                </dl>
+            </div>
+
         </div>
 
     </div>
