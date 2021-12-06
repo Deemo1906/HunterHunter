@@ -1,20 +1,24 @@
 <?php
-$database = "hxh";
-	$db_handle = mysqli_connect('localhost','root','');
-	$db_found = mysqli_select_db($db_handle, $database);
-	isset($_POST['id']) && isset($_POST['passw'])
 	
+	if(isset($_POST['id']) && isset($_POST['passw']))
+	{
 	echo"<meta charset=\"utf-8\">";
 	//echo "<link rel=\"stylesheet\"type=\"text/css\" href =\"dupondStyle.css\">";
 	//identifier base de donnée
-	
+	$database = "hxh";
 
 	//se connecter à la BDD
 	//rappel: serveur = localhost/phpmyadmin login = root  mdp= Rien
-	
+	$db_handle = mysqli_connect('localhost','root','');
+	$db_found = mysqli_select_db($db_handle, $database);
 
 	//$id = isset($_POST["id"])? $_POST["id"] : "";
 	//$passw = isset($_POST["passw"])? $_POST["passw"] : "";
+	
+	
+
+	
+
 	
 	// on applique les deux fonctions mysqli_real_escape_string et htmlspecialchars
     // pour éliminer toute attaque de type injection SQL et XSS
@@ -45,10 +49,11 @@ $database = "hxh";
        //header('Location: login.php?erreur=2'); // utilisateur ou mot de passe vide
     	echo"champs vides";
     }
-   
-		
-	
 
+	
+	}
+
+	
 
 	//fermer la connexion
 	mysqli_close($db_handle);
