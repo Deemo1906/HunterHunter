@@ -154,7 +154,6 @@ color: black;
 h3{
   font-family: bleu;
   color: white;
-  text-align: center;
 }
 
 #boximg{
@@ -166,8 +165,8 @@ h3{
 .Aimg img{
   margin-right: 0%;
   margin-left: 0%;
-  max-height: 250px;
-  max-width: 250px;
+  max-height: 200px;
+  max-width: 200px;
 }
 
 #itempageB{
@@ -198,4 +197,9 @@ h3{
   float: left;
   margin-right: 15%;
   margin-left: 15%;
+}
+
+#auction h3{
+  text-align: center;
+  float: none;
 }
