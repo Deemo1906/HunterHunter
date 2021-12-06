@@ -24,6 +24,20 @@
             <td><input type="password" name="passw"></td>
         </tr>
         <br>
+        <tr>
+            <td id="text">AccountType</td>
+            <br>
+            <td>
+                <SELECT name="UserType">
+                <OPTION VALUE="admin">Admin</OPTION>
+                <OPTION VALUE="vendeur">Seller</OPTION>
+                <OPTION VALUE="client">Customer</OPTION>
+
+
+
+                </SELECT>
+            </td>
+        </tr>
        
         <tr>
         <br>
@@ -34,7 +48,7 @@
                 if(isset($_GET['erreur'])){
                     $err = $_GET['erreur'];
                     if($err==1 || $err==2)
-                        echo "<p style='color:red'>Utilisateur ou mot de passe incorrect</p>";
+                        echo "<p style='color:red'>Utilisateur ou mot de passe incorrect<br> <a href="sign.php">S'inscrire</a></p>";
                 }
         ?>
         </tr>
