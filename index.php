@@ -153,7 +153,7 @@
                     <img class="unselected" src="img2.jpg" height="100px" width="100px" onclick="gotoitem(this, event)">
                     <img class="unselected" src="img2.jpg" height="100px" width="100px" onclick="gotoitem(this, event)">
                     <br>
-                    <input type="submit" value="Valider votre panier">
+                    <input type="submit" value="Valider votre panier"  onclick="window.open('pay.php','popup','width=600,height=600')" >
             </div>
             <div id=Historique>
                 <h3>Mon Historique d'achats</h3>
