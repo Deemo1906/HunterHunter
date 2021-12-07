@@ -27,7 +27,16 @@ $database = "hxh";
     
     	if($choice=="client")
     	{
-    		echo "salut";
+
+    	$requete = "SELECT count(*) FROM client where 
+              Pseudo = '".$pseudo."' or Mail = '".$mail."'";
+        $exec_requete = mysqli_query($db_handle,$requete);
+        $reponse      = mysqli_fetch_array($exec_requete);
+        $count = $reponse['count(*)'];
+
+        if($count==0)
+        {
+    	
     		$sql = "INSERT INTO client (Name, Mail, Pseudo, Password)
 	VALUES('$name','$mail','$pseudo','$passw')";
     		mysqli_query($db_handle,$sql);
@@ -36,18 +45,33 @@ $database = "hxh";
 	VALUES('$pseudo', '$passw','$choice')";
 	mysqli_query($db_handle,$sql1);
 
+		}
+
+		else{}
+
 	
 		}
 
 		if($choice=="vendeur")
     	{
+    		$requete = "SELECT count(*) FROM vendeur where 
+              Pseudo = '".$pseudo."' or Mail = '".$mail."'";
+        $exec_requete = mysqli_query($db_handle,$requete);
+        $reponse      = mysqli_fetch_array($exec_requete);
+        $count = $reponse['count(*)'];
+
+        if($count==0)
+        {
     		$sql="INSERT INTO vendeur (Name, Mail, Pseudo, Password)
+        
 	VALUES( '$name', '$mail', '$pseudo', '$passw')";
     mysqli_query($db_handle,$sql);
 
     	$sql1 = "INSERT INTO login (Pseudo, Password,AccountType)
 	VALUES('$pseudo', '$passw','$choice')";
 	mysqli_query($db_handle,$sql1);
+	}
+	else{}
 	}
 
 
