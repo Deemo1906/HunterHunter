@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : mar. 07 déc. 2021 à 11:35
+-- Généré le : mar. 07 déc. 2021 à 14:16
 -- Version du serveur :  5.7.31
 -- Version de PHP : 7.3.21
 
@@ -68,7 +68,14 @@ CREATE TABLE IF NOT EXISTS `client` (
   `DateExp` date DEFAULT NULL,
   `CardCode` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`IdClient`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `client`
+--
+
+INSERT INTO `client` (`IdClient`, `Name`, `Mail`, `Pseudo`, `Password`, `Adress`, `City`, `PostalCode`, `Country`, `NumTel`, `CardType`, `CardNum`, `CardName`, `DateExp`, `CardCode`) VALUES
+(4, 'flo', 'flo@gmail.com', 'flolebest', 'caca', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -84,6 +91,7 @@ CREATE TABLE IF NOT EXISTS `item` (
   `Price` int(11) NOT NULL,
   `SaleType` varchar(255) NOT NULL,
   `Category` varchar(255) NOT NULL,
+  `Photo` varchar(255) NOT NULL,
   `IdAdmin` int(11) NOT NULL,
   `IdVendeur` int(11) NOT NULL,
   PRIMARY KEY (`Iditem`),
@@ -104,35 +112,14 @@ CREATE TABLE IF NOT EXISTS `login` (
   `Password` varchar(255) NOT NULL,
   `AccountType` varchar(255) NOT NULL,
   PRIMARY KEY (`IdLogin`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `login`
 --
 
 INSERT INTO `login` (`IdLogin`, `Pseudo`, `Password`, `AccountType`) VALUES
-(1, 'Netero', 'HXH2021', 'admin'),
-(5, 'paulopaulpogba', 'camarche', 'client'),
-(6, 'paulopaulpogba', 'sakluy', 'client'),
-(7, 'paulopaulpogba', 'hjhjh', 'client'),
-(8, 'paulopaulpogba', 'azert', 'client'),
-(9, 'paulopaulpogba', 'guiyt', 'client'),
-(10, 'paulopaulpogba', 'derirn', 'vendeur');
-
--- --------------------------------------------------------
-
---
--- Structure de la table `photo`
---
-
-DROP TABLE IF EXISTS `photo`;
-CREATE TABLE IF NOT EXISTS `photo` (
-  `Idphoto` int(11) NOT NULL AUTO_INCREMENT,
-  `link` varchar(255) NOT NULL,
-  `Iditem` int(11) NOT NULL,
-  PRIMARY KEY (`Idphoto`),
-  KEY `Iditem` (`Iditem`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+(1, 'Netero', 'HXH2021', 'admin');
 
 -- --------------------------------------------------------
 
@@ -162,12 +149,6 @@ CREATE TABLE IF NOT EXISTS `vendeur` (
 ALTER TABLE `item`
   ADD CONSTRAINT `item_ibfk_1` FOREIGN KEY (`IdAdmin`) REFERENCES `admin` (`IdAdmin`),
   ADD CONSTRAINT `item_ibfk_2` FOREIGN KEY (`IdVendeur`) REFERENCES `vendeur` (`IdVendeur`);
-
---
--- Contraintes pour la table `photo`
---
-ALTER TABLE `photo`
-  ADD CONSTRAINT `photo_ibfk_1` FOREIGN KEY (`Iditem`) REFERENCES `item` (`Iditem`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
