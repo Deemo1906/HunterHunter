@@ -13,7 +13,7 @@
         <img src="logo_main.png" alt="logos">
         <br>
         <tr>
-            <td id="text">Name:</td>
+            <td id="text">Pseudo:</td>
             <br>
             <td><input type="text" name="id"></td>
         </tr>
