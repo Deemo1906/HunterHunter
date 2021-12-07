@@ -25,6 +25,8 @@ $database = "hxh";
     $choice = isset($_POST["choice"])? $_POST["choice"] : "";
   
     
+    if($pseudo !== "" && $passw !== "" &&$mail!=="" && $name!=="" &&$choice!=="")
+    {
     	if($choice=="client")
     	{
 
@@ -45,9 +47,12 @@ $database = "hxh";
 	VALUES('$pseudo', '$passw','$choice')";
 	mysqli_query($db_handle,$sql1);
 
+		header('Location: Log.php?erreur=3');
 		}
 
-		else{}
+		else {
+		header('Location: sign.php?erreur=4');
+	}
 
 	
 		}
@@ -70,13 +75,24 @@ $database = "hxh";
     	$sql1 = "INSERT INTO login (Pseudo, Password,AccountType)
 	VALUES('$pseudo', '$passw','$choice')";
 	mysqli_query($db_handle,$sql1);
+	header('Location: Log.php?erreur=3');
 	}
-	else{}
+	else {
+		header('Location: sign.php?erreur=4');
 	}
-
-
-		mysqli_close($db_handle);
+	}
 
 }
+
+
+else{
+
+	mysqli_close($db_handle);
+	header('Location: sign.php?erreur=5');
+}
+		
+
+}
+
 
 ?>

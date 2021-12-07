@@ -49,7 +49,10 @@
                     $err = $_GET['erreur'];
                     if($err==1 || $err==2)
                         echo "<p style='color:red'>Utilisateur ou mot de passe incorrect<br> </p>";
+                elseif ($err==3) {
+                    echo "<p style='color:yellow'>Votre compte a bien été enregistré<br> </p>";
                 }
+            }
         ?>
         <p>Si vous n'avez pas de compte Hunter: Cliquez <a href="sign.php">ici</a></p>
         </tr>

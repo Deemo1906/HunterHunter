@@ -42,7 +42,17 @@
                 <br>
 
         </tr>
-
+ <?php
+                if(isset($_GET['erreur'])){
+                    $err = $_GET['erreur'];
+                    if($err==4)
+                        echo "<p style='color:red'>Pseudo ou mail déjà existant<br> </p>";
+                    elseif($err==5)
+                    {
+                        echo"<p style='color:red'>Veuillez remplir tous les champs pour vous inscrire<br></p>";
+                    }
+                }
+        ?>
 
         <br>
         <tr>
