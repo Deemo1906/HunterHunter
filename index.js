@@ -47,6 +47,8 @@ function gotoitem(el, e){
   e.preventDefault();
   document.getElementById("itempageB").style.visibility = "visible";
   document.getElementById("itempageB").style.position = "relative";
+  document.getElementsByClassName(document.getElementsByClassName("active")[0].id)[0].style.visibility = "hidden";
+  document.getElementsByClassName(document.getElementsByClassName("active")[0].id)[0].style.position = "absolute";
   document.getElementsByClassName("active")[0].className = "";
   document.getElementById("Home").className = "active";
   console.log(document.getElementsByClassName("Home")[0])
@@ -56,4 +58,23 @@ function gotoitem(el, e){
   console.log(document.getElementsByClassName("Home")[0].visibility)
 
   document.getElementsByClassName("mainpic")[0].src = el.src;
+}
+
+function addItem(el, e){
+   document.getElementsByClassName("unselected")[0].src = document.getElementsByClassName("mainpic")[0].src;
+   document.getElementsByClassName("unselected")[0].className = "selected";
+}
+
+function wishlist(el, e){
+  document.getElementsByClassName("unselectedW")[0].src = document.getElementsByClassName("mainpic")[0].src;
+  document.getElementsByClassName("unselectedW")[0].className = "selectedW";
+}
+
+
+function addbasquet(el, e){
+  while(document.getElementsByClassName("selectedW").length != 0){
+    document.getElementsByClassName("unselected")[0].src = document.getElementsByClassName("selectedW")[0].src;
+   document.getElementsByClassName("unselected")[0].className = "selected";
+   document.getElementsByClassName("selectedW")[0].className = "unselectedW";
+  }
 }

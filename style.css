@@ -259,3 +259,19 @@ h3{
 #Wishlist{
   text-align: center;
 }
+
+.unselected{
+  visibility: hidden;
+}
+
+.unselectedW{
+  visibility: hidden;
+}
+
+.selected{
+  visibility: inherit;
+}
+
+.selectedW{
+  visibility: inherit;
+}
