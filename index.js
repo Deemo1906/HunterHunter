@@ -5,14 +5,14 @@ function change(el, e){
       document.getElementById("itempageB").style.position = "absolute";
     }
     console.log(document.getElementsByClassName("active")[0].id);
-    if(document.getElementsByClassName("active")[0].id == "Home" || (document.getElementsByClassName("active")[0].id == "My account")|| (document.getElementsByClassName("active")[0].id == "My basket")){
+    if(document.getElementsByClassName("active")[0].id == "Home" || (document.getElementsByClassName("active")[0].id == "My account")|| (document.getElementsByClassName("active")[0].id == "My basket")|| (document.getElementsByClassName("active")[0].id == "All available items")|| (document.getElementsByClassName("active")[0].id == "Notifications")){
       document.getElementsByClassName(document.getElementsByClassName("active")[0].id)[0].style.visibility = "hidden";
     document.getElementsByClassName(document.getElementsByClassName("active")[0].id)[0].style.position = "absolute";
     }
     document.getElementsByClassName("active")[0].className = "";
     el.className = "active";
     console.log(el.id)
-    if(el.id == "Home" || el.id =="My account" || el.id =="My basket"){
+    if(el.id == "Home" || el.id =="My account" || el.id =="My basket"|| el.id =="All available items"|| el.id =="Notifications"){
       document.getElementsByClassName(el.id)[0].style.visibility = "visible";
       document.getElementsByClassName(el.id)[0].style.position = "relative";
     }
@@ -60,6 +60,7 @@ function gotoitem(el, e){
   document.getElementsByClassName("mainpic")[0].src = el.src;
 }
 
+<<<<<<< Updated upstream
 function addItem(el, e){
    document.getElementsByClassName("unselected")[0].src = document.getElementsByClassName("mainpic")[0].src;
    document.getElementsByClassName("unselected")[0].className = "selected";
@@ -77,4 +78,36 @@ function addbasquet(el, e){
    document.getElementsByClassName("unselected")[0].className = "selected";
    document.getElementsByClassName("selectedW")[0].className = "unselectedW";
   }
+=======
+function timer(){
+
+  // Set the date we're counting down to
+  var countDownDate = new Date("Jan 5, 2022 15:37:25").getTime();
+
+    // Update the count down every 1 second
+    var x = setInterval(function() {
+
+    // Get today's date and time
+    var now = new Date().getTime();
+
+    // Find the distance between now and the count down date
+    var distance = countDownDate - now;
+
+    // Time calculations for days, hours, minutes and seconds
+    var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    // Display the result in the element with id="demo"
+    document.getElementById("demo").innerHTML = days + "d " + hours + "h "
+    + minutes + "m " + seconds + "s ";
+
+    // If the count down is finished, write some text 
+    if (distance < 0) {
+        clearInterval(x);
+        document.getElementById("demo").innerHTML = "EXPIRED";
+    }
+    }, 1000);
+>>>>>>> Stashed changes
 }
