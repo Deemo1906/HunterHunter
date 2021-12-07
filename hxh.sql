@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : lun. 06 déc. 2021 à 12:51
+-- Généré le : mar. 07 déc. 2021 à 11:35
 -- Version du serveur :  5.7.31
 -- Version de PHP : 7.3.21
 
@@ -57,18 +57,18 @@ CREATE TABLE IF NOT EXISTS `client` (
   `Mail` varchar(255) NOT NULL,
   `Pseudo` varchar(255) NOT NULL,
   `Password` varchar(255) NOT NULL,
-  `Adress` varchar(255) NOT NULL,
-  `City` varchar(255) NOT NULL,
-  `PostalCode` varchar(255) NOT NULL,
-  `Country` varchar(255) NOT NULL,
-  `NumTel` varchar(255) NOT NULL,
-  `CardType` varchar(255) NOT NULL,
-  `CardNum` varchar(255) NOT NULL,
-  `CardName` varchar(255) NOT NULL,
-  `DateExp` date NOT NULL,
-  `CardCode` varchar(255) NOT NULL,
+  `Adress` varchar(255) DEFAULT NULL,
+  `City` varchar(255) DEFAULT NULL,
+  `PostalCode` varchar(255) DEFAULT NULL,
+  `Country` varchar(255) DEFAULT NULL,
+  `NumTel` varchar(255) DEFAULT NULL,
+  `CardType` varchar(255) DEFAULT NULL,
+  `CardNum` varchar(255) DEFAULT NULL,
+  `CardName` varchar(255) DEFAULT NULL,
+  `DateExp` date DEFAULT NULL,
+  `CardCode` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`IdClient`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -104,14 +104,20 @@ CREATE TABLE IF NOT EXISTS `login` (
   `Password` varchar(255) NOT NULL,
   `AccountType` varchar(255) NOT NULL,
   PRIMARY KEY (`IdLogin`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `login`
 --
 
 INSERT INTO `login` (`IdLogin`, `Pseudo`, `Password`, `AccountType`) VALUES
-(1, 'Netero', 'HXH2021', 'Admin');
+(1, 'Netero', 'HXH2021', 'admin'),
+(5, 'paulopaulpogba', 'camarche', 'client'),
+(6, 'paulopaulpogba', 'sakluy', 'client'),
+(7, 'paulopaulpogba', 'hjhjh', 'client'),
+(8, 'paulopaulpogba', 'azert', 'client'),
+(9, 'paulopaulpogba', 'guiyt', 'client'),
+(10, 'paulopaulpogba', 'derirn', 'vendeur');
 
 -- --------------------------------------------------------
 
@@ -140,11 +146,11 @@ CREATE TABLE IF NOT EXISTS `vendeur` (
   `Name` varchar(255) NOT NULL,
   `Mail` varchar(255) NOT NULL,
   `Pseudo` varchar(255) NOT NULL,
-  `Photo` varchar(255) NOT NULL,
+  `Photo` varchar(255) DEFAULT NULL,
   `Password` varchar(255) NOT NULL,
-  `Background` varchar(255) NOT NULL,
+  `Background` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`IdVendeur`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 --
 -- Contraintes pour les tables déchargées
