@@ -31,13 +31,13 @@
         </tr>
 
         <tr>
-            <td id="text">Seller <input type="radio"  name="choice"value="seller">
+            <td id="text">Seller <input type="radio"  name="choice"value="vendeur">
                 </td>
                 <br>
 
         </tr>
         <tr>
-            <td id="text">Customer <input type="radio"  name="choice"value="customer">
+            <td id="text">Customer <input type="radio"  name="choice"value="client">
                 </td>
                 <br>
 

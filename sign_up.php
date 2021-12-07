@@ -22,23 +22,35 @@ $database = "hxh";
    
 
 
+    if(isset($_POST['summit']))
+    {
     
-    	if($choice=="customer")
+    	if($choice=="client")
     	{
     		$sql = "INSERT INTO client (Name, Mail, Pseudo, Password)
 	VALUES( $name, $mail, $pseudo, $passw)";
     mysqli_query($db_handle,$sql);
+
+    		$sql1 = "INSERT INTO login ( Pseudo, Password,AccountType)
+	VALUES(  $pseudo, $passw ,$choice)";
+
+	mysqli_query($db_handle,$sql1);
 		}
 
-		if($choice=="seller")
+		if($choice=="vendeur")
     	{
     		$sql="INSERT INTO vendeur (Name, Mail, Pseudo, Password)
-	VALUES(‘’, $name, $mail, $pseudo, $passw)";
+	VALUES( $name, $mail, $pseudo, $passw)";
     mysqli_query($db_handle,$sql);
+
+    	$sql1 = "INSERT INTO login ( Pseudo, Password,AccountType)
+	VALUES(  $pseudo, $passw ,$choice)";
+	mysqli_query($db_handle,$sql1);
 		
 
 
 	}
+}
 
 	
 }
