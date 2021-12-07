@@ -47,8 +47,6 @@ function gotoitem(el, e){
   e.preventDefault();
   document.getElementById("itempageB").style.visibility = "visible";
   document.getElementById("itempageB").style.position = "relative";
-  document.getElementsByClassName(document.getElementsByClassName("active")[0].id)[0].style.visibility = "hidden";
-  document.getElementsByClassName(document.getElementsByClassName("active")[0].id)[0].style.position = "absolute";
   document.getElementsByClassName("active")[0].className = "";
   document.getElementById("Home").className = "active";
   console.log(document.getElementsByClassName("Home")[0])
@@ -58,6 +56,7 @@ function gotoitem(el, e){
   console.log(document.getElementsByClassName("Home")[0].visibility)
 
   document.getElementsByClassName("mainpic")[0].src = el.src;
+<<<<<<< HEAD
 }
 
 <<<<<<< Updated upstream
@@ -110,4 +109,6 @@ function timer(){
     }
     }, 1000);
 >>>>>>> Stashed changes
+=======
+>>>>>>> parent of 0ddb686 (wishlist and basquet working)
 }
