@@ -54,4 +54,6 @@ function gotoitem(el, e){
 
   document.getElementsByClassName("Home")[0].style.position = "absolute";
   console.log(document.getElementsByClassName("Home")[0].visibility)
+
+  document.getElementsByClassName("mainpic")[0].src = el.src;
 }
