@@ -34,7 +34,7 @@
         		$_SESSION['name'] = $id;
         		$_SESSION['mdp'] = $passw;
         		$_SESSION['Atype'] = $type;
-           header('Location: index.html');
+           header('Location: index.php');
         
         }
         else
@@ -53,7 +53,7 @@
 
 	
 	}
-	
+
 	?>
 
 	
