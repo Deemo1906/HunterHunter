@@ -263,3 +263,19 @@ td{
   width: 100%;
   text-align: center;
 }
+
+.unselected{
+  visibility: hidden;
+}
+
+.unselectedW{
+  visibility: hidden;
+}
+
+.selectedW{
+  visibility: inherit;
+}
+
+.selected{
+  visibility: inherit;
+}

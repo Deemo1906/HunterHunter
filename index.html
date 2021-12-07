@@ -119,6 +119,8 @@
                     <dt>Date of arrival</dt>
                     <dl>19-06-2001</dl>
                 </dl>
+                <input type="button" value="Add to basquet "onclick="addItem(this,event)">
+                <input type="button" value="Wishlist" onclick="wishlist(this,event)">
             </div>
             <div id="textd">
                 <h3>Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum ab fuga eveniet sed doloremque corrupti omnis aspernatur nisi nesciunt? Doloribus rerum exercitationem, aut voluptate dolor commodi deserunt sint iure illum.</h3>
@@ -147,9 +149,9 @@
             <h3 style="text-decoration: underline; text-align: center;">Bienvenue dans votre centre de contrôle:</h3>
             <div id=Panier>
                 <h3>Mon Panier</h3>
-                    <img src="img2.jpg" height="100px" width="100px" onclick="gotoitem(this, event)">
-                    <img src="img2.jpg" height="100px" width="100px" onclick="gotoitem(this, event)">
-                    <img src="img2.jpg" height="100px" width="100px" onclick="gotoitem(this, event)">
+                    <img class="unselected" src="img2.jpg" height="100px" width="100px" onclick="gotoitem(this, event)">
+                    <img class="unselected" src="img2.jpg" height="100px" width="100px" onclick="gotoitem(this, event)">
+                    <img class="unselected" src="img2.jpg" height="100px" width="100px" onclick="gotoitem(this, event)">
                     <br>
                     <input type="submit" value="Valider votre panier">
             </div>
@@ -161,17 +163,12 @@
             </div>
             <div id=Wishlist>
                 <h3>Ma liste de souhaits</h3>
-<<<<<<< HEAD
-<<<<<<< Updated upstream
+
                 <img class="unselectedW" src="img2.jpg" height="100px" width="100px" onclick="gotoitem(this, event)">
-                    <img class="unselectedW" src="img2.jpg" height="100px" width="100px" onclick="gotoitem(this, event)">
-                    <img class="unselectedW" src="img2.jpg" height="100px" width="100px" onclick="gotoitem(this, event)">
-                    <br>
-                    <input type="submit" value="Ajouter au panier" onclick="addbasquet(this,event)">
-=======
-                <img src="img2.jpg" height="100px" width="100px" onclick="gotoitem(this, event)">
-                    <img src="img2.jpg" height="100px" width="100px" onclick="gotoitem(this, event)">
-                    <img src="img2.jpg" height="100px" width="100px" onclick="gotoitem(this, event)">
+                <img class="unselectedW" src="img2.jpg" height="100px" width="100px" onclick="gotoitem(this, event)">
+                <img class="unselectedW" src="img2.jpg" height="100px" width="100px" onclick="gotoitem(this, event)">
+                <br>
+                <input type="submit" value="Ajouter au panier" onclick="addbasquet(this,event)">
             </div>
         </div>
         <div class="All available items" style="visibility: hidden; position: absolute;">
@@ -228,14 +225,11 @@
                         </td>
                     </table>
                 </form>
->>>>>>> Stashed changes
-=======
                 <img src="img2.jpg" height="100px" width="100px" onclick="gotoitem(this, event)">
                     <img src="img2.jpg" height="100px" width="100px" onclick="gotoitem(this, event)">
                     <img src="img2.jpg" height="100px" width="100px" onclick="gotoitem(this, event)">
                     <br>
                     <input type="submit" value="Ajouter au panier">
->>>>>>> parent of 0ddb686 (wishlist and basquet working)
             </div>
         </div>
     </div>

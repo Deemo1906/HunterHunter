@@ -56,10 +56,8 @@ function gotoitem(el, e){
   console.log(document.getElementsByClassName("Home")[0].visibility)
 
   document.getElementsByClassName("mainpic")[0].src = el.src;
-<<<<<<< HEAD
 }
 
-<<<<<<< Updated upstream
 function addItem(el, e){
    document.getElementsByClassName("unselected")[0].src = document.getElementsByClassName("mainpic")[0].src;
    document.getElementsByClassName("unselected")[0].className = "selected";
@@ -77,7 +75,6 @@ function addbasquet(el, e){
    document.getElementsByClassName("unselected")[0].className = "selected";
    document.getElementsByClassName("selectedW")[0].className = "unselectedW";
   }
-=======
 function timer(){
 
   // Set the date we're counting down to
@@ -108,7 +105,4 @@ function timer(){
         document.getElementById("demo").innerHTML = "EXPIRED";
     }
     }, 1000);
->>>>>>> Stashed changes
-=======
->>>>>>> parent of 0ddb686 (wishlist and basquet working)
-}
+}}
