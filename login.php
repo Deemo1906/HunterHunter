@@ -1,6 +1,6 @@
 <?php
 	session_start();
-	if(isset($_POST['id']) && isset($_POST['passw']))
+	if(isset($_POST['id']) && isset($_POST['passw'])&&isset($_POST['UserType']))
 	{
 	echo"<meta charset=\"utf-8\">";
 	//echo "<link rel=\"stylesheet\"type=\"text/css\" href =\"dupondStyle.css\">";
@@ -19,17 +19,21 @@
     // pour éliminer toute attaque de type injection SQL et XSS
     $id = mysqli_real_escape_string($db_handle,htmlspecialchars($_POST['id'])); 
     $passw = mysqli_real_escape_string($db_handle,htmlspecialchars($_POST['passw']));
+    $type =mysqli_real_escape_string($db_handle,htmlspecialchars($_POST['UserType']));;
     
-    if($id !== "" && $passw !== "")
+    if($id !== "" && $passw !== "" &&$type!=="")
     {
         $requete = "SELECT count(*) FROM login where 
-              Pseudo = '".$id."' and Password = '".$passw."' ";
+              Pseudo = '".$id."' and Password = '".$passw."' and AccountType='".$type."' ";
         $exec_requete = mysqli_query($db_handle,$requete);
         $reponse      = mysqli_fetch_array($exec_requete);
         $count = $reponse['count(*)'];
         if($count!=0) // nom d'utilisateur et mot de passe correctes
         {
-           //$_SESSION['id'] = $id;
+            
+        		$_SESSION['name'] = $id;
+        		$_SESSION['mdp'] = $passw;
+        		$_SESSION['Atype'] = $type;
            header('Location: index.html');
         
         }
