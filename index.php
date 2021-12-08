@@ -47,6 +47,7 @@
             <a id="Notifications" onclick="change(this, event)">Notifications</a>
             <a id="My basket" onclick="change(this, event)">My basket</a>
             <a id="My account" onclick="change(this, event)">My account</a>
+            <a id="Sell" onclick="change(this, event)">Sell</a>
             <a href='index.php?disconnect=true'id="Disconnect">Disconnect</a>
             <?php
                 session_start();
@@ -254,6 +255,17 @@
                         </td>
                 </form>
             </div>
+        </div>
+        <div id="Sell">
+            <form action="">
+            <h3 style="text-decoration: underline; text-align: center;">Entrez ci-dessous les critères de l'article que vous aouhaitez vendre:</h3><br>
+            <h3>Nom de l'article: </h3><input type="text" name="" id=""><br>
+            <h3>Prix de l'article (en €): </h3><input type="number" name="" id=""><br>
+            <h3>Date limite de vente de l'article: </h3><input type="date" name="" id=""><br>
+            <h3>Heure limite de vente de l'article: </h3><input type="time" name="" id=""><br>
+            <h3>Photo de l'article: </h3><input type="file" name="" id=""><br>
+            <input type="submit" value="Mettre l'article en vente">
+        </form>
         </div>
     </div>
     <script src="index.js"></script>
