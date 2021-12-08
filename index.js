@@ -47,6 +47,8 @@ function gotoitem(el, e){
   e.preventDefault();
   document.getElementById("itempageB").style.visibility = "visible";
   document.getElementById("itempageB").style.position = "relative";
+  document.getElementsByClassName(document.getElementsByClassName("active")[0].id)[0].style.visibility = "hidden";
+  document.getElementsByClassName(document.getElementsByClassName("active")[0].id)[0].style.position = "absolute";
   document.getElementsByClassName("active")[0].className = "";
   document.getElementById("Home").className = "active";
   console.log(document.getElementsByClassName("Home")[0])
@@ -75,13 +77,17 @@ function addbasquet(el, e){
    document.getElementsByClassName("unselected")[0].className = "selected";
    document.getElementsByClassName("selectedW")[0].className = "unselectedW";
   }
+}
+
+
+
   function GioIsGod()
   {
     console.log(document.getElementById("fesses").value);
     let value=document.getElementById("fesses").value;
     document.getElementById("bite").setAttribute('min', value);
   }
-  function timer()
+function timer()
   {
     // Set the date we're counting down to
   var countDownDate = new Date("Jan 5, 2022 15:37:25").getTime();
@@ -114,5 +120,4 @@ function addbasquet(el, e){
   }
 
   timer();
-}
   //Balayer le vecteur avec la fonction timer surchargée avec les dates et les noms des articles
