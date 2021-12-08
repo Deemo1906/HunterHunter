@@ -223,26 +223,34 @@
         <div class="Notifications" style="visibility: hidden; position: absolute;">
             <h3 id="demo"></h3>
             <div id="venteperso">
-                <h3>Vous avez acheté:</h3>
+                <h3 style="text-decoration: underline; text-align: center;">Vous avez acheté:</h3>
                 <img src="img2.jpg" height="100px" width="100px" onclick="gotoitem(this, event)">
                 <img src="img2.jpg" height="100px" width="100px" onclick="gotoitem(this, event)">
                 <img src="img2.jpg" height="100px" width="100px" onclick="gotoitem(this, event)">
             </div>
             <div id="achatperso">
-                <h3>Vous avez vendu:</h3>
+                <h3 style="text-decoration: underline; text-align: center;">Vous avez vendu:</h3>
                 <img src="img2.jpg" height="100px" width="100px" onclick="gotoitem(this, event)">
                 <img src="img2.jpg" height="100px" width="100px" onclick="gotoitem(this, event)">
                 <img src="img2.jpg" height="100px" width="100px" onclick="gotoitem(this, event)">
             </div>
             <div id="recherche" style="padding-top: auto;">
-                <h3>Vous recherhez un article correspondant aux critères suivants:</h3>
+                <h3 style="text-decoration: underline; text-align: center;">Vous recherhez un article correspondant aux critères suivants:</h3>
                 <form action="">
                         <td>
                             <h3>Prix minimal: </h3>
-                            <input type="number" name="minimal" id="fesses" min=0 onkeyup="GioIsGod()">
+                            <input type="number" name="minimal" id="fesses" min=0 onkeyup="GioIsGod()" onclick="GioIsGod()">
                             <h3>Prix maximal: </h3>
-                            <input type="number" name="maximal" id="bite" min=0>
-                            <h3> €</h3>
+                            <input type="number" name="maximal" id="bite" onkeyup="GioIsGod()" onclick="GioIsGod()">
+                            <h3> €</h3><br>
+                            <h3 style="text-decoration: underline; text-align: center;">Rechercher par:</h3>
+                            <label for="alphabetique"><h3>Ordre Alphabétique</h3></label>
+                            <input type="radio" id="alphabetique" name="critere" value="Ordre Alphabétique">
+                              <label for="croissant"><h3>Prix Croissant</h3></label>
+                              <input type="radio" id="croissant" name="critere" value="Prix Croissant">
+                              <label for="decroissant"><h3>Prix Décroissant</h3></label>
+                              <input type="radio" id="decroissant" name="critere" value="Prix Décroissant">
+
                         </td>
                 </form>
             </div>
