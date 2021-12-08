@@ -12,13 +12,15 @@
 	$db_handle = mysqli_connect('localhost','root','');
 	$db_found = mysqli_select_db($db_handle, $database);
 
+
+	$name = isset($_POST["name"])? $_POST["name"] : "";
+    $description = isset($_POST["description"])? $_POST["description"] : "";
+    $price = isset($_POST["price"])? $_POST["price"] : "";
+    $saletype = isset($_POST["saletype"])? $_POST["saletype"] : "";
+    $category = isset($_POST["category"])? $_POST["category"] : "";
+    $photo = isset($_POST["photo"])? $_POST["photo"] : "";
 	
-    $name = mysqli_real_escape_string($db_handle,htmlspecialchars($_POST['name'])); 
-    $description = mysqli_real_escape_string($db_handle,htmlspecialchars($_POST['desciption']));
-    $price =mysqli_real_escape_string($db_handle,htmlspecialchars($_POST['price']));;
-    $saletype = mysqli_real_escape_string($db_handle,htmlspecialchars($_POST['saletype'])); 
-    $category = mysqli_real_escape_string($db_handle,htmlspecialchars($_POST['category']));
-    $photo =mysqli_real_escape_string($db_handle,htmlspecialchars($_POST['photo']));;
+    
     
     if($name !== "" && $description !== "" &&$price!=="" && $saletype !== "" && $category !== "" &&$photo!=="")
     {
