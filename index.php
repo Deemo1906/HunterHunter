@@ -50,7 +50,7 @@
             <a id="Sell" onclick="change(this, event)">Sell</a>
             <a href='index.php?disconnect=true'id="Disconnect">Disconnect</a>
             <?php
-                session_start();
+                
                 if(isset($_GET['disconnect']))
                 {
                    if($_GET['disconnect']==true)
