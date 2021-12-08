@@ -92,23 +92,23 @@ $price2 = $data2['Price'];
             <a id="Sell" onclick="change(this, event)">Sell</a>
             <a href='index.php?disconnect=true'id="Disconnect">Disconnect</a>
             <?php
-                // if(isset($_GET['disconnect']))
-                // {
-                //    if($_GET['disconnect']==true)
-                //    {
-                //       session_unset();
-                //       header("location:Log.php");
-                //    }
-                // }
-                // else if($_SESSION['name'] !== ""&&$_SESSION['mdp']!==""&&$_SESSION['Atype']!==""){
-                //     $name = $_SESSION['name'];
-                //     $mdp = $_SESSION['mdp'];
-                //     $Atype = $_SESSION['Atype'];
+                 if(isset($_GET['disconnect']))
+                 {
+                    if($_GET['disconnect']==true)
+                   {
+                      session_unset();
+                       header("location:Log.php");
+                    }
+                 }
+                 /*elseif($_SESSION['name'] !== ""&&$_SESSION['mdp']!==""&&$_SESSION['Atype']!==""){
+                     $name = $_SESSION['name'];
+                     $mdp = $_SESSION['mdp'];
+                    $Atype = $_SESSION['Atype'];
 
 
-                //     // afficher un message
-                //     //echo "<br>$name<br>$mdp<br>$Atype";
-                // }
+                     // afficher un message
+                    echo "<br>$name<br>$mdp<br>$Atype";
+                 }*/
             ?>
         </div>
         <div class="Home">
