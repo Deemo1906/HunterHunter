@@ -37,7 +37,7 @@
         		$exec_sqlt = mysqli_query($db_handle,$sqlt);
         		$data = mysqli_fetch_assoc($sqlt);
             
-        		$sql = "INSERT INTO client (Name, Description, Price, SaleType,Category,Photo,IdAdmin,Idvendeur)
+        		$sql = "INSERT INTO item (Name, Description, Price, SaleType,Category,Photo,IdAdmin,Idvendeur)
 	VALUES('$name','$Description','$price','$saletype','$category','photo','1','$data['IdVendeur']')";
     		mysqli_query($db_handle,$sql);
            header('Location: index.php');
@@ -50,7 +50,7 @@
         		$exec_sqlt = mysqli_query($db_handle,$sqlt);
         		$data = mysqli_fetch_assoc($sqlt);
             
-        		$sql = "INSERT INTO client (Name, Description, Price, SaleType,Category,Photo,IdAdmin,Idvendeur)
+        		$sql = "INSERT INTO item (Name, Description, Price, SaleType,Category,Photo,IdAdmin,Idvendeur)
 	VALUES('$name','$Description','$price','$saletype','$category','photo','$data['IdAdmin']','2')";
     		mysqli_query($db_handle,$sql);
            header('Location: index.php');
