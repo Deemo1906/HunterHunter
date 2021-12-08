@@ -46,27 +46,6 @@
             <a id="Notifications" onclick="change(this, event)">Notifications</a>
             <a id="My basket" onclick="change(this, event)">My basket</a>
             <a id="My account" onclick="change(this, event)">My account</a>
-            <a href='index.php?disconnect=true'id="Disconnect">Disconnect</a>
-            <?php
-                session_start();
-                if(isset($_GET['disconnect']))
-                { 
-                   if($_GET['disconnect']==true)
-                   {  
-                      session_unset();
-                      header("location:Log.php");
-                   }
-                }
-                else if($_SESSION['name'] !== ""&&$_SESSION['mdp']!==""&&$_SESSION['Atype']!==""){
-                    $name = $_SESSION['name'];
-                    $mdp = $_SESSION['mdp'];
-                    $Atype = $_SESSION['Atype'];
-
-
-                    // afficher un message
-                    //echo "<br>$name<br>$mdp<br>$Atype";
-                }
-            ?>
         </div>
         <div class="Home">
             <!-- New items -->
