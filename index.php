@@ -139,6 +139,7 @@
                     <dl>150 000</dl>
                     <dt>Date of arrival</dt>
                     <dl>19-06-2001</dl>
+                    <dt id="demo"></dt>
                 </dl>
                 <input type="button" value="Add to basquet "onclick="addItem(this,event)">
                 <input type="button" value="Wishlist" onclick="wishlist(this,event)">
@@ -231,6 +232,18 @@
                 <img src="img2.jpg" height="100px" width="100px" onclick="gotoitem(this, event)">
                 <img src="img2.jpg" height="100px" width="100px" onclick="gotoitem(this, event)">
                 <img src="img2.jpg" height="100px" width="100px" onclick="gotoitem(this, event)">
+            </div>
+            <div id="recherche" style="padding-top: auto;">
+                <h3>Vous recherhez un article correspondant aux critères suivants:</h3>
+                <form action="">
+                        <td>
+                            <h3>Prix minimal: </h3>
+                            <input type="number" name="minimal" id="fesses" min=0 onkeyup="GioIsGod()">
+                            <h3>Prix maximal: </h3>
+                            <input type="number" name="maximal" id="bite" min=0>
+                            <h3> €</h3>
+                        </td>
+                </form>
             </div>
         </div>
     </div>
