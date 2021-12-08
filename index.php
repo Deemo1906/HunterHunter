@@ -221,7 +221,7 @@ if($_SESSION['name'] !== ""&&$_SESSION['mdp']!==""&&$_SESSION['Atype']!==""){
             <!-- Current auctions -->
             <div class = "auctions" id="right" style="height: 50%;">
                 <h1 style="text-align: center;">Current auctions</h1>
-                <div class="Aimg" id="boximg">
+                <div class="Aimg" id="boximg" style=" text-align: center;">
                     <!-- auctions with timer under image -->
                     <img class="imgA" src="000.jpg" onclick="gotoitem(this, event); descA(this)">
                     <img class="imgA" src="1.jpg" onclick="gotoitem(this, event); descA(this)">
