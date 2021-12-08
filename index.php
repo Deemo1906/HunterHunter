@@ -211,26 +211,6 @@
                 <img src="img2.jpg" height="100px" width="100px" onclick="gotoitem(this, event)">
                 <img src="img2.jpg" height="100px" width="100px" onclick="gotoitem(this, event)">
             </div>
-            <div id="recherche" style="padding-top: auto;">
-                <h3>Vous recherhez un article correspondant aux critères suivants:</h3>
-                <form action="">
-                    <table>
-                        <td>
-                            <h3>Fourchette de prix: </h3>
-                            <input type="range" name="prix" id="">
-                            <h3> €</h3>
-                        </td>
-                        <td>
-                            
-                        </td>
-                    </table>
-                </form>
-                <img src="img2.jpg" height="100px" width="100px" onclick="gotoitem(this, event)">
-                    <img src="img2.jpg" height="100px" width="100px" onclick="gotoitem(this, event)">
-                    <img src="img2.jpg" height="100px" width="100px" onclick="gotoitem(this, event)">
-                    <br>
-                    <input type="submit" value="Ajouter au panier">
-            </div>
         </div>
     </div>
     <script src="index.js"></script>
