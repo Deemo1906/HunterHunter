@@ -260,7 +260,7 @@
             <form action="">
             <h3 style="text-decoration: underline; text-align: center;">Entrez ci-dessous les critères de l'article que vous aouhaitez vendre:</h3><br>
             <h3>Nom de l'article: </h3><input type="text" name="" id=""><br>
-            <h3>Prix de l'article (en €): </h3><input type="number" name="" id=""><br>
+            <h3>Prix de l'article (en €): </h3><input type="number" name="" id="" min=0><br>
             <h3>Date limite de vente de l'article: </h3><input type="date" name="" id=""><br>
             <h3>Heure limite de vente de l'article: </h3><input type="time" name="" id=""><br>
             <h3>Photo de l'article: </h3><input type="file" name="" id=""><br>
