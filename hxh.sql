@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1:3306
--- Generation Time: Dec 08, 2021 at 12:57 PM
--- Server version: 5.7.36
--- PHP Version: 7.4.26
+-- Hôte : 127.0.0.1:3306
+-- Généré le : mer. 08 déc. 2021 à 15:08
+-- Version du serveur :  5.7.31
+-- Version de PHP : 7.3.21
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `hxh`
+-- Base de données : `hxh`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `admin`
+-- Structure de la table `admin`
 --
 
 DROP TABLE IF EXISTS `admin`;
@@ -38,7 +38,7 @@ CREATE TABLE IF NOT EXISTS `admin` (
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `admin`
+-- Déchargement des données de la table `admin`
 --
 
 INSERT INTO `admin` (`IdAdmin`, `Name`, `Mail`, `Pseudo`, `Password`) VALUES
@@ -47,7 +47,7 @@ INSERT INTO `admin` (`IdAdmin`, `Name`, `Mail`, `Pseudo`, `Password`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `client`
+-- Structure de la table `client`
 --
 
 DROP TABLE IF EXISTS `client`;
@@ -71,7 +71,7 @@ CREATE TABLE IF NOT EXISTS `client` (
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `client`
+-- Déchargement des données de la table `client`
 --
 
 INSERT INTO `client` (`IdClient`, `Name`, `Mail`, `Pseudo`, `Password`, `Adress`, `City`, `PostalCode`, `Country`, `NumTel`, `CardType`, `CardNum`, `CardName`, `DateExp`, `CardCode`) VALUES
@@ -80,7 +80,7 @@ INSERT INTO `client` (`IdClient`, `Name`, `Mail`, `Pseudo`, `Password`, `Adress`
 -- --------------------------------------------------------
 
 --
--- Table structure for table `item`
+-- Structure de la table `item`
 --
 
 DROP TABLE IF EXISTS `item`;
@@ -97,20 +97,28 @@ CREATE TABLE IF NOT EXISTS `item` (
   PRIMARY KEY (`Iditem`),
   KEY `IdAdmin` (`IdAdmin`),
   KEY `IdVendeur` (`IdVendeur`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `item`
+-- Déchargement des données de la table `item`
 --
 
 INSERT INTO `item` (`Iditem`, `Name`, `Description`, `Price`, `SaleType`, `Category`, `Photo`, `IdAdmin`, `IdVendeur`) VALUES
 (2, 'Scarlet eyes', 'Though typically brown, the irises belonging to members of the Kurta Clan glow scarlet when they are emotionally agitated. If a member of the Kurta Clan dies in that state, his/her eyes permanently stay scarlet postmortem. Due to the Scarlet Eyes being considered one of the most gorgeous colors in the world, they are treated as a rare jewel by many. After the Phantom Troupe massacres the Kurta Clan, Kurapika is the clan\'s only survivor.', 150000, 'Direct', 'Rare', 'scarlet-eyes.png', 1, 2),
-(3, 'City', 'card city.', 13000, 'Direct', 'Rare', '000.jpg', 1, 2);
+(3, 'Ruler\'s Blessing', 'A castle given as a prize for winning the contest, town with population 10,000 included. Its residents will live according to whatever laws and commands you issue.', 13000, 'Auction', 'Haut de gamme', '000.jpg', 1, 2),
+(4, 'Patch of Forest', 'The entrance to the giant forest called the \"Mountain God\'s Garden\" where many unique endemic species live. They are all tame and friendly.', 15000, 'Auction', 'Haut de gamme', '1.jpg', 1, 2),
+(5, 'Angel\'s Breath', 'She cures one person of all wounds and ills, restoring them to perfect health. She will only appear once.', 30000, 'Negotiation', 'Rare', '17.jpg', 1, 2),
+(6, 'King Great White Beetle', 'It uses special pheromones to lure other insects to build a huge colony. It leaves the colony once a day for an evening stroll.', 10000, 'Auction', 'Regular', '53.jpg', 1, 2),
+(7, 'Sonne Limarch\'s Used Tissue', 'Tissues used by the famous actor Sonne Limarch. It comes with a DNA certificate.', 100000, 'Direct', 'Rare', 'tissue.jpg', 1, 2),
+(8, 'Killua\'s Skateboard', 'This board was owned by one of the most famous hunters in the world.', 12000, 'Negotiation', 'Regular', 'board.jpg', 1, 2),
+(9, 'Gon\'s fishing rod', 'A fishing rod that can be used for fishing or as a powerful weapon. It was once used in a Hunter exam.', 12000, 'Auction', 'Haut de gamme', 'fishing-rod.png', 1, 2),
+(10, 'Gun-gi board', 'Gungi is a two-player strategy board game from the Republic of East Gorteau.', 30000, 'Direct', 'Rare', 'gungi.jpg', 1, 2),
+(11, 'Poor Man\'s Rose', 'Poor Man\'s Rose is a chemo-explosive weapon of mass destruction and one of the most powerful and dangerous weapons in the world.', 500000, 'Direct', 'Rare', 'rose.png', 1, 2);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `login`
+-- Structure de la table `login`
 --
 
 DROP TABLE IF EXISTS `login`;
@@ -123,7 +131,7 @@ CREATE TABLE IF NOT EXISTS `login` (
 ) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `login`
+-- Déchargement des données de la table `login`
 --
 
 INSERT INTO `login` (`IdLogin`, `Pseudo`, `Password`, `AccountType`) VALUES
@@ -133,7 +141,7 @@ INSERT INTO `login` (`IdLogin`, `Pseudo`, `Password`, `AccountType`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `vendeur`
+-- Structure de la table `vendeur`
 --
 
 DROP TABLE IF EXISTS `vendeur`;
@@ -149,18 +157,18 @@ CREATE TABLE IF NOT EXISTS `vendeur` (
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `vendeur`
+-- Déchargement des données de la table `vendeur`
 --
 
 INSERT INTO `vendeur` (`IdVendeur`, `Name`, `Mail`, `Pseudo`, `Photo`, `Password`, `Background`) VALUES
 (2, 'hugo', 'hugo.haidar19@gmail.com', 'Deemo1906', NULL, '19062001Hh', NULL);
 
 --
--- Constraints for dumped tables
+-- Contraintes pour les tables déchargées
 --
 
 --
--- Constraints for table `item`
+-- Contraintes pour la table `item`
 --
 ALTER TABLE `item`
   ADD CONSTRAINT `item_ibfk_1` FOREIGN KEY (`IdAdmin`) REFERENCES `admin` (`IdAdmin`),
