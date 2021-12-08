@@ -1,3 +1,45 @@
+<?php
+echo "<meta charset=\"utf-8\">";
+//echo "<link rel=\"stylesheet\" type=\"text/css\" href=\"dupontStyle.css\">";
+//identifier votre BDD
+$database = "hxh";
+//identifier votre serveur (localhost), utlisateur (root), mot de passe ("")
+$db_handle = mysqli_connect('localhost', 'root', '');
+$db_found = mysqli_select_db($db_handle, $database);
+
+
+
+
+$sql = "";
+//Si la BDD existe
+if ($db_found) {
+$sql = "SELECT Name,Description,Price,Category,Photo FROM item where Name LIKE 'S%'";
+$sql2 = "SELECT Name,Description,Price,Category,Photo FROM item where Name LIKE 'C%'";
+
+
+$result = mysqli_query($db_handle, $sql);
+$result2 = mysqli_query($db_handle, $sql2);
+
+
+// 3 Newest items
+$data = mysqli_fetch_assoc($result);
+$data2 = mysqli_fetch_assoc($result2);
+$img = $data['Photo'];
+$img2 = $data2['Photo'];
+$text = $data['Name'];
+$text2 = $data2['Name'];
+$desc = $data['Description'];
+$desc2 = $data2['Description'];
+$price = $data['Price'];
+$price2 = $data2['Price'];
+
+
+
+}
+
+
+?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -50,24 +92,23 @@
             <a id="Sell" onclick="change(this, event)">Sell</a>
             <a href='index.php?disconnect=true'id="Disconnect">Disconnect</a>
             <?php
-                
-                if(isset($_GET['disconnect']))
-                {
-                   if($_GET['disconnect']==true)
-                   {
-                      session_unset();
-                      header("location:Log.php");
-                   }
-                }
-                else if($_SESSION['name'] !== ""&&$_SESSION['mdp']!==""&&$_SESSION['Atype']!==""){
-                    $name = $_SESSION['name'];
-                    $mdp = $_SESSION['mdp'];
-                    $Atype = $_SESSION['Atype'];
+                // if(isset($_GET['disconnect']))
+                // {
+                //    if($_GET['disconnect']==true)
+                //    {
+                //       session_unset();
+                //       header("location:Log.php");
+                //    }
+                // }
+                // else if($_SESSION['name'] !== ""&&$_SESSION['mdp']!==""&&$_SESSION['Atype']!==""){
+                //     $name = $_SESSION['name'];
+                //     $mdp = $_SESSION['mdp'];
+                //     $Atype = $_SESSION['Atype'];
 
 
-                    // afficher un message
-                    //echo "<br>$name<br>$mdp<br>$Atype";
-                }
+                //     // afficher un message
+                //     //echo "<br>$name<br>$mdp<br>$Atype";
+                // }
             ?>
         </div>
         <div class="Home">
@@ -80,13 +121,17 @@
                     <!-- Full-width images with number and caption text -->
                     <div class="mySlides fade">
                     <div class="numbertext">1 / 3</div>
-                    <img src="image1.jpg" style="width:100%" onclick="gotoitem(this, event)">
-                    <div class="text">Caption Text</div>
+                    <?php
+                    echo "<img src='$img' style='width:100%;height:300px' onclick='gotoitem(this, event), setdesc()'>";
+                    echo " <div class='text'>$text</div>";
+                    ?>
                     </div>
                     <div class="mySlides fade">
                     <div class="numbertext">2 / 3</div>
-                    <img src="img2.jpg" style="width:100%" onclick="gotoitem(this, event)">
-                    <div class="text">Caption Two</div>
+                    <?php
+                    echo "<img src='$img2' style='width:100%;height:300px' onclick='gotoitem(this, event), setdesc()'>";
+                    echo " <div class='text'>$text2</div>";
+                    ?>
                     </div>
                     <div class="mySlides fade">
                     <div class="numbertext">3 / 3</div>
@@ -98,10 +143,30 @@
                     <a class="next" onclick="plusSlides(1)">&#10095;</a>
                 </div>
                 <br>
-                <div>
+                <div class="info">
                     <dl style="color: white; text-align: center;">
                         <dt>Price</dt>
-                        <dl>150 000</dl>
+                        <?php
+                        echo "<dl> $price </dl>";
+                        ?>
+                        <dt>Date of arrival</dt>
+                        <dl>19-06-2001</dl>
+                    </dl>
+                </div>
+                <div class="info">
+                    <dl style="color: white; text-align: center;">
+                        <dt>Price</dt>
+                        <?php
+                        echo "<dl> $price2 </dl>";
+                        ?>
+                        <dt>Date of arrival</dt>
+                        <dl>19-06-2001</dl>
+                    </dl>
+                </div>
+                <div class="info">
+                    <dl style="color: white; text-align: center;">
+                        <dt>Price</dt>
+                        <dl>4500 000</dl>
                         <dt>Date of arrival</dt>
                         <dl>19-06-2001</dl>
                     </dl>
@@ -147,8 +212,20 @@
                 <input type="button" value="Wishlist" onclick="wishlist(this,event)">
             </div>
             <div id="textd">
-                <h3>Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum ab fuga eveniet sed doloremque corrupti omnis aspernatur nisi nesciunt? Doloribus rerum exercitationem, aut voluptate dolor commodi deserunt sint iure illum.</h3>
+                <h3 id="description"></h3>
+                <script type = "text/javascript">
+                    function setdesc(){
+                        if(document.getElementsByClassName('mainpic')[0].src == "http://localhost/HunterHunter/000.jpg"){
+                            console.log("test1")
+                            document.getElementById("description").innerHTML = "<?php echo $desc2; ?>";
+                        }else{
+                            console.log("test2")
+                            document.getElementById("description").innerHTML = "<?php echo $desc; ?>";
+                        }
+                    }
+                </script>
             </div>
+
 
         </div>
 
@@ -256,8 +333,8 @@
                 </form>
             </div>
         </div>
-        <div id="Sell">
-            <form action="">
+        <!-- <div id="Sell" style="display:none">
+             <form action="">
             <h3 style="text-decoration: underline; text-align: center;">Entrez ci-dessous les critères de l'article que vous aouhaitez vendre:</h3><br>
             <h3>Nom de l'article: </h3><input type="text" name="" id=""><br>
             <h3>Prix de l'article (en €): </h3><input type="number" name="" id="" min=0><br>
@@ -265,8 +342,8 @@
             <h3>Heure limite de vente de l'article: </h3><input type="time" name="" id=""><br>
             <h3>Photo de l'article: </h3><input type="file" name="" id=""><br>
             <input type="submit" value="Mettre l'article en vente">
-        </form>
-        </div>
+         </form>
+        </div> -->
     </div>
     <script src="index.js"></script>
 </body>

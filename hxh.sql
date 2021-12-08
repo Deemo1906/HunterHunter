@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Dec 08, 2021 at 10:44 AM
+-- Generation Time: Dec 08, 2021 at 12:57 PM
 -- Server version: 5.7.36
 -- PHP Version: 7.4.26
 
@@ -97,14 +97,15 @@ CREATE TABLE IF NOT EXISTS `item` (
   PRIMARY KEY (`Iditem`),
   KEY `IdAdmin` (`IdAdmin`),
   KEY `IdVendeur` (`IdVendeur`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `item`
 --
 
 INSERT INTO `item` (`Iditem`, `Name`, `Description`, `Price`, `SaleType`, `Category`, `Photo`, `IdAdmin`, `IdVendeur`) VALUES
-(2, 'Scarlet eyes', 'Though typically brown, the irises belonging to members of the Kurta Clan glow scarlet when they are emotionally agitated. If a member of the Kurta Clan dies in that state, his/her eyes permanently stay scarlet postmortem.\r\n\r\nDue to the Scarlet Eyes being considered one of the most gorgeous colors in the world, they are treated as a rare jewel by many.[2] After the Phantom Troupe massacres the Kurta Clan, Kurapika is the clan\'s only survivor.[7]', 150000, 'Direct', 'Rare', 'scarlet-eyes.png', 1, 2);
+(2, 'Scarlet eyes', 'Though typically brown, the irises belonging to members of the Kurta Clan glow scarlet when they are emotionally agitated. If a member of the Kurta Clan dies in that state, his/her eyes permanently stay scarlet postmortem. Due to the Scarlet Eyes being considered one of the most gorgeous colors in the world, they are treated as a rare jewel by many. After the Phantom Troupe massacres the Kurta Clan, Kurapika is the clan\'s only survivor.', 150000, 'Direct', 'Rare', 'scarlet-eyes.png', 1, 2),
+(3, 'City', 'card city.', 13000, 'Direct', 'Rare', '000.jpg', 1, 2);
 
 -- --------------------------------------------------------
 

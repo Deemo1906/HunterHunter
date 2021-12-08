@@ -34,24 +34,27 @@ function currentSlide(n) {
 function showSlides(n) {
   var i;
   var slides = document.getElementsByClassName("mySlides");
+  var info = document.getElementsByClassName("info");
   if (n > slides.length) {slideIndex = 1}
   if (n < 1) {slideIndex = slides.length}
   for (i = 0; i < slides.length; i++) {
       slides[i].style.display = "none";
+      info[i].style.display = "none"
   }
   slides[slideIndex-1].style.display = "block";
+  info[slideIndex-1].style.display = "block";
 }
 
 
 function gotoitem(el, e){
   e.preventDefault();
+
   document.getElementById("itempageB").style.visibility = "visible";
   document.getElementById("itempageB").style.position = "relative";
   document.getElementsByClassName(document.getElementsByClassName("active")[0].id)[0].style.visibility = "hidden";
   document.getElementsByClassName(document.getElementsByClassName("active")[0].id)[0].style.position = "absolute";
   document.getElementsByClassName("active")[0].className = "";
   document.getElementById("Home").className = "active";
-  console.log(document.getElementsByClassName("Home")[0])
   document.getElementsByClassName("Home")[0].style.visibility = "hidden";
 
   document.getElementsByClassName("Home")[0].style.position = "absolute";
@@ -120,3 +123,5 @@ function timer()
 
   timer();
   //Balayer le vecteur avec la fonction timer surchargée avec les dates et les noms des articles
+
+
