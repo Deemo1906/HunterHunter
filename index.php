@@ -15,7 +15,7 @@ $sql = "";
 //Si la BDD existe
 if ($db_found) {
 $sql = "SELECT Name,Description,Price,Category,Photo FROM item where Name='Scarlet eyes'";
-$sql2 = "SELECT Name,Description,Price,Category,Photo FROM item where Name= 'City'";
+$sql2 = "SELECT Name,Description,Price,Category,Photo FROM item where Name LIKE 'Ru%'";
 
 
 $result = mysqli_query($db_handle, $sql);
