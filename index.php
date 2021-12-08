@@ -9,30 +9,71 @@ $db_handle = mysqli_connect('localhost', 'root', '');
 $db_found = mysqli_select_db($db_handle, $database);
 
 
-
+function console_log($output, $with_script_tags = true) {
+    $js_code = 'console.log(' . json_encode($output, JSON_HEX_TAG) . 
+');';
+    if ($with_script_tags) {
+        $js_code = '<script>' . $js_code . '</script>';
+    }
+    echo $js_code;
+}
 
 $sql = "";
 //Si la BDD existe
 if ($db_found) {
 $sql = "SELECT Name,Description,Price,Category,Photo FROM item where Name='Scarlet eyes'";
-$sql2 = "SELECT Name,Description,Price,Category,Photo FROM item where Name LIKE 'Ru%'";
+$sql2 = "SELECT Name,Description,Price,Category,Photo FROM item where Name LIKE 'Son%'";
+$sql3 = "SELECT Name,Description,Price,Category,Photo FROM item where Name LIKE 'Gun%'";
 
+$sqlD = "SELECT * FROM item where SaleType = 'Direct'";
+$sqlA = "SELECT * FROM item where SaleType = 'Auction'";
+
+
+$resultA = mysqli_query($db_handle, $sqlA);
+$resultD = mysqli_query($db_handle, $sqlD);
+
+
+$imgA = [];
+$descA = [];
+$priceA = [];
+$imgD = [];
+$descD = [];
+$priceD = [];
+$nameD = [];
+while($dataA = mysqli_fetch_assoc($resultA)){
+    array_push($imgA,$dataA['Photo']);
+    array_push($descA,$dataA['Description']);
+    array_push($priceA,$dataA['Price']);
+}
+while($dataD = mysqli_fetch_assoc($resultD)){
+    array_push($imgD,$dataD['Photo']);
+    array_push($descD,$dataD['Description']);
+    array_push($priceD,$dataD['Price']);
+    array_push($nameD,$dataD['Name']);
+}
 
 $result = mysqli_query($db_handle, $sql);
 $result2 = mysqli_query($db_handle, $sql2);
+$result3 = mysqli_query($db_handle, $sql3);
 
 
 // 3 Newest items
 $data = mysqli_fetch_assoc($result);
 $data2 = mysqli_fetch_assoc($result2);
+$data3 = mysqli_fetch_assoc($result3);
+
 $img = $data['Photo'];
 $img2 = $data2['Photo'];
+$img3 = $data3['Photo'];
 $text = $data['Name'];
 $text2 = $data2['Name'];
+$text3 = $data3['Name'];
 $desc = $data['Description'];
 $desc2 = $data2['Description'];
+$desc3 = $data3['Description'];
 $price = $data['Price'];
 $price2 = $data2['Price'];
+$price3 = $data3['Price'];
 
 if($_SESSION['name'] !== ""&&$_SESSION['mdp']!==""&&$_SESSION['Atype']!==""){
                     $pseudo = $_SESSION['name'];
@@ -48,6 +89,9 @@ if($_SESSION['name'] !== ""&&$_SESSION['mdp']!==""&&$_SESSION['Atype']!==""){
 ?>
 
 
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -58,7 +102,7 @@ if($_SESSION['name'] !== ""&&$_SESSION['mdp']!==""&&$_SESSION['Atype']!==""){
     <title>Hunter association official site</title>
 </head>
 <body id="main">
-    <form action="login.php" method="post"></form>
+    <form action="indexback.php">
     <div id = "login"style="visibility: hidden;position: absolute;">
         <img src="logo_main.png" alt="logos">
         <br>
@@ -107,7 +151,6 @@ if($_SESSION['name'] !== ""&&$_SESSION['mdp']!==""&&$_SESSION['Atype']!==""){
                        header("location:Log.php");
                    }
                  }
-                
             ?>
         </div>
         <div class="Home">
@@ -121,21 +164,23 @@ if($_SESSION['name'] !== ""&&$_SESSION['mdp']!==""&&$_SESSION['Atype']!==""){
                     <div class="mySlides fade">
                     <div class="numbertext">1 / 3</div>
                     <?php
-                    echo "<img src='$img' style='width:100%;height:300px' onclick='gotoitem(this, event), setdesc()'>";
-                    echo " <div class='text'>$text</div>";
+                    echo "<img src='$imgD[0]' style='width:100%;height:300px' onclick='gotoitem(this, event), setdesc(this)'>";
+                    echo " <div class='text'>$nameD[0]</div>";
                     ?>
                     </div>
                     <div class="mySlides fade">
                     <div class="numbertext">2 / 3</div>
                     <?php
-                    echo "<img src='$img2' style='width:100%;height:300px' onclick='gotoitem(this, event), setdesc()'>";
-                    echo " <div class='text'>$text2</div>";
+                    echo "<img src='$imgD[1]' style='width:100%;height:300px' onclick='gotoitem(this, event), setdesc(this)'>";
+                    echo " <div class='text'>$nameD[1]</div>";
                     ?>
                     </div>
                     <div class="mySlides fade">
                     <div class="numbertext">3 / 3</div>
-                    <img src="img3.jpg" style="width:100%" onclick="gotoitem(this, event)">
-                    <div class="text">Caption Three</div>
+                    <?php
+                    echo "<img src='$imgD[2]' style='width:100%;height:300px' onclick='gotoitem(this, event), setdesc(this)'>";
+                    echo " <div class='text'>$nameD[2]</div>";
+                    ?>
                     </div>
                     <!-- Next and previous buttons -->
                     <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
@@ -146,7 +191,7 @@ if($_SESSION['name'] !== ""&&$_SESSION['mdp']!==""&&$_SESSION['Atype']!==""){
                     <dl style="color: white; text-align: center;">
                         <dt>Price</dt>
                         <?php
-                        echo "<dl> $price </dl>";
+                        echo "<dl> $priceD[0] </dl>";
                         ?>
                         <dt>Date of arrival</dt>
                         <dl>19-06-2001</dl>
@@ -156,7 +201,7 @@ if($_SESSION['name'] !== ""&&$_SESSION['mdp']!==""&&$_SESSION['Atype']!==""){
                     <dl style="color: white; text-align: center;">
                         <dt>Price</dt>
                         <?php
-                        echo "<dl> $price2 </dl>";
+                        echo "<dl> $priceD[1] </dl>";
                         ?>
                         <dt>Date of arrival</dt>
                         <dl>19-06-2001</dl>
@@ -165,7 +210,9 @@ if($_SESSION['name'] !== ""&&$_SESSION['mdp']!==""&&$_SESSION['Atype']!==""){
                 <div class="info">
                     <dl style="color: white; text-align: center;">
                         <dt>Price</dt>
-                        <dl>4500 000</dl>
+                        <?php
+                        echo "<dl> $priceD[2] </dl>";
+                        ?>
                         <dt>Date of arrival</dt>
                         <dl>19-06-2001</dl>
                     </dl>
@@ -176,10 +223,23 @@ if($_SESSION['name'] !== ""&&$_SESSION['mdp']!==""&&$_SESSION['Atype']!==""){
                 <h1 style="text-align: center;">Current auctions</h1>
                 <div class="Aimg" id="boximg">
                     <!-- auctions with timer under image -->
-                    <img src="000.jpg" onclick="gotoitem(this, event)">
-                    <img src="1.jpg" onclick="gotoitem(this, event)">
-                    <img src="17.jpg" onclick="gotoitem(this, event)">
+                    <img class="imgA" src="000.jpg" onclick="gotoitem(this, event); descA(this)">
+                    <img class="imgA" src="1.jpg" onclick="gotoitem(this, event); descA(this)">
+                    <img class="imgA" src="17.jpg" onclick="gotoitem(this, event); descA(this) ">
 
+                    <script type = "text/javascript">
+                        var imgtot = <?php echo json_encode($imgA); ?>;
+                        for (let i = 0; i<3;i++) {
+                            document.getElementsByClassName("imgA")[i].src =imgtot[i];
+                        };
+
+                        function descA(el){
+                            var desctot = <?php echo json_encode($descA); ?>;
+                            var indexImg = imgtot.indexOf(el.src.replace(/^.*[\\\/]/, ''))
+                            document.getElementById("description").innerHTML = desctot[indexImg];
+                            //console.log(imgtot.indexOf(el.src.replace(/^.*[\\\/]/, '')));
+                        }
+                    </script>
 
                 </div>
                 <!-- newsletter -->
@@ -213,14 +273,18 @@ if($_SESSION['name'] !== ""&&$_SESSION['mdp']!==""&&$_SESSION['Atype']!==""){
             <div id="textd">
                 <h3 id="description"></h3>
                 <script type = "text/javascript">
-                    function setdesc(){
-                        if(document.getElementsByClassName('mainpic')[0].src == "http://localhost/HunterHunter/000.jpg"){
-                            console.log("test1")
-                            document.getElementById("description").innerHTML = "<?php echo $desc2; ?>";
-                        }else{
-                            console.log("test2")
-                            document.getElementById("description").innerHTML = "<?php echo $desc; ?>";
-                        }
+                    imgtotD = <?php echo json_encode($imgD); ?>;
+                    function setdesc(el){
+                        // if(document.getElementsByClassName('mainpic')[0].src == "http://localhost/HunterHunter/000.jpg"){
+                        //     console.log("test1")
+                        //     document.getElementById("description").innerHTML = "<?php echo $desc2; ?>";
+                        // }else{
+                        //     console.log("test2")
+                        //     document.getElementById("description").innerHTML = "<?php echo $desc; ?>";
+                        // }
+                        var desctotD = <?php echo json_encode($descD); ?>;
+                        var indexImgD = imgtotD.indexOf(el.src.replace(/^.*[\\\/]/, ''))
+                        document.getElementById("description").innerHTML = desctotD[indexImgD];
                     }
                 </script>
             </div>
@@ -458,5 +522,6 @@ if($_SESSION['name'] !== ""&&$_SESSION['mdp']!==""&&$_SESSION['Atype']!==""){
         </div> -->
     </div>
     <script src="index.js"></script>
+    </form>
 </body>
 </html>
