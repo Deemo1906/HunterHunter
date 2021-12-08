@@ -47,6 +47,7 @@
             <a id="Notifications" onclick="change(this, event)">Notifications</a>
             <a id="My basket" onclick="change(this, event)">My basket</a>
             <a id="My account" onclick="change(this, event)">My account</a>
+            <a href='index.php?disconnect=true'id="Disconnect">Disconnect</a>
             <?php
                 session_start();
                 if(isset($_GET['disconnect']))
