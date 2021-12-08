@@ -1,4 +1,5 @@
 <?php
+session_start();
 echo "<meta charset=\"utf-8\">";
 //echo "<link rel=\"stylesheet\" type=\"text/css\" href=\"dupontStyle.css\">";
 //identifier votre BDD
@@ -13,8 +14,8 @@ $db_found = mysqli_select_db($db_handle, $database);
 $sql = "";
 //Si la BDD existe
 if ($db_found) {
-$sql = "SELECT Name,Description,Price,Category,Photo FROM item where Name LIKE 'S%'";
-$sql2 = "SELECT Name,Description,Price,Category,Photo FROM item where Name LIKE 'C%'";
+$sql = "SELECT Name,Description,Price,Category,Photo FROM item where Name='Scarlet eyes'";
+$sql2 = "SELECT Name,Description,Price,Category,Photo FROM item where Name= 'City'";
 
 
 $result = mysqli_query($db_handle, $sql);
@@ -32,6 +33,12 @@ $desc = $data['Description'];
 $desc2 = $data2['Description'];
 $price = $data['Price'];
 $price2 = $data2['Price'];
+
+if($_SESSION['name'] !== ""&&$_SESSION['mdp']!==""&&$_SESSION['Atype']!==""){
+                    $pseudo = $_SESSION['name'];
+                    $mdp = $_SESSION['mdp'];
+                    $Atype = $_SESSION['Atype'];
+                    }
 
 
 
@@ -95,20 +102,12 @@ $price2 = $data2['Price'];
                  if(isset($_GET['disconnect']))
                  {
                     if($_GET['disconnect']==true)
-                   {
-                      session_unset();
+                    {
+                       session_unset();
                        header("location:Log.php");
-                    }
+                   }
                  }
-                 /*elseif($_SESSION['name'] !== ""&&$_SESSION['mdp']!==""&&$_SESSION['Atype']!==""){
-                     $name = $_SESSION['name'];
-                     $mdp = $_SESSION['mdp'];
-                    $Atype = $_SESSION['Atype'];
-
-
-                     // afficher un message
-                    echo "<br>$name<br>$mdp<br>$Atype";
-                 }*/
+                
             ?>
         </div>
         <div class="Home">
@@ -234,6 +233,116 @@ $price2 = $data2['Price'];
                 <img src="netero.jpg" style="max-width: 400px;max-height: 400px; width: 200%;">
             </div>
             <div id="right" style="background-image: url('back.jpg'); background-size: cover;">
+                
+                    <?php
+                
+                    echo"<dl id='info' style='color: white;''>";
+                 
+
+                    if($Atype=="client")
+                    {
+                        
+
+
+
+
+                        $sqlc = "";
+                        //Si la BDD existe
+                        if ($db_found) {
+                        //code MySQL. $sql est basé sur le choix de l’utilisateur
+
+                            $sqlc = "SELECT Name,Pseudo,Mail FROM client where Pseudo = '".$pseudo."'";
+
+
+                            $resultc = mysqli_query($db_handle, $sqlc);
+
+                            while ($data = mysqli_fetch_assoc($resultc)) {
+
+
+                                
+                                    
+                                    echo"<dt >Name:   </dt>";
+                                    echo"<dl >" . $data['Name'] . "</dl>";
+                                    echo"<dt >Pseudo:   </dt>";
+                                    echo"<dl >". $data['Pseudo'] ."</dl>";
+                                    echo"<dt >Mail:   </dt>";
+                                    echo"<dl >". $data['Mail'] ."</dl>";
+                                
+                                
+                                    
+                                }
+                            
+                        } 
+                        
+                    }
+
+                    elseif($Atype=="vendeur")
+                    {
+                        $sqlv = "";
+                        //Si la BDD existe
+                        if ($db_found) {
+                        //code MySQL. $sql est basé sur le choix de l’utilisateur
+
+                            $sqlv = "SELECT Name,Pseudo,Mail FROM vendeur where Pseudo = '".$pseudo."'";
+
+
+                            $resultv = mysqli_query($db_handle, $sqlv);
+
+                            while ($data = mysqli_fetch_assoc($resultv)) {
+
+
+                                
+                                    
+                                    echo"<dt >Name:   </dt>";
+                                    echo"<dl >" . $data['Name'] . "</dl>";
+                                    echo"<dt >Pseudo:   </dt>";
+                                    echo"<dl >". $data['Pseudo'] ."</dl>";
+                                    echo"<dt >Mail:   </dt>";
+                                    echo"<dl >". $data['Mail'] ."</dl>";
+                                
+                                
+                                    
+                                }
+                            
+                        } 
+                    }
+                    elseif($Atype=="admin")
+                    {
+                        $sqla = "";
+                        //Si la BDD existe
+                        if ($db_found) {
+                        //code MySQL. $sql est basé sur le choix de l’utilisateur
+
+                            $sqla = "SELECT Name,Pseudo,Mail FROM admin where Pseudo = '".$pseudo."'";
+
+
+                            $resulta = mysqli_query($db_handle, $sqla);
+
+                            while ($data = mysqli_fetch_assoc($resulta)) {
+
+
+                                
+                                    
+                                    echo"<dt >Name:   </dt>";
+                                    echo"<dl >" . $data['Name'] . "</dl>";
+                                    echo"<dt >Pseudo:   </dt>";
+                                    echo"<dl >". $data['Pseudo'] ."</dl>";
+                                    echo"<dt >Mail:   </dt>";
+                                    echo"<dl >". $data['Mail'] ."</dl>";
+                                
+                                
+                                    
+                                }
+                            
+                        } 
+                    }
+                    echo"</dl>";
+
+                
+                /*<div id="img3040">
+                <img src="netero.jpg" style="max-width: 400px;max-height: 400px; width: 200%;">
+            </div>
+            <div id="right" style="background-image: url('back.jpg'); background-size: cover;">
                 <dl id="info" style="color: white;">
                     <dt>Name:</dt>
                     <dl>Netero</dl>
@@ -243,6 +352,9 @@ $price2 = $data2['Price'];
                     <dl>Admin</dl>
                     <dt>Mail:</dt>
                     <dl>pussyGod@hunter-association.com</dl>
+                </dl>
+            </div>*/
+            ?>
                 </dl>
             </div>
         </div>
