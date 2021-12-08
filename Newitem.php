@@ -38,7 +38,7 @@
         		$data = mysqli_fetch_assoc($sqlt);
             
         		$sql = "INSERT INTO item (Name, Description, Price, SaleType,Category,Photo,IdAdmin,Idvendeur)
-	VALUES('$name','$Description','$price','$saletype','$category','photo','1','$data['IdVendeur']')";
+	VALUES('$name','$Description','$price','$saletype','$category','photo',1,$data['IdVendeur'])";
     		mysqli_query($db_handle,$sql);
            header('Location: index.php');
 
@@ -51,7 +51,7 @@
         		$data = mysqli_fetch_assoc($sqlt);
             
         		$sql = "INSERT INTO item (Name, Description, Price, SaleType,Category,Photo,IdAdmin,Idvendeur)
-	VALUES('$name','$Description','$price','$saletype','$category','photo','$data['IdAdmin']','2')";
+	VALUES('$name','$Description','$price','$saletype','$category','photo',$data['IdAdmin'],2)";
     		mysqli_query($db_handle,$sql);
            header('Location: index.php');
 
@@ -60,13 +60,13 @@
         }
         else
         {
-           //header('Location: Log.php?erreur=1'); // article déjà existant
+           header('Location: ItemSetting.php?erreur=1'); // article déjà existant
         	
         }
     }
     else
     {
-       //header('Location: Log.php?erreur=2'); // champ(s) vide(s)
+       header('Location: ItemSetting.php?erreur=2'); // champ(s) vide(s)
     	
     }
 //fermer la connexion

@@ -102,7 +102,7 @@ if($_SESSION['name'] !== ""&&$_SESSION['mdp']!==""&&$_SESSION['Atype']!==""){
     <title>Hunter association official site</title>
 </head>
 <body id="main">
-    <form action="indexback.php">
+    <!--<form action="indexback.php">-->
     <div id = "login"style="visibility: hidden;position: absolute;">
         <img src="logo_main.png" alt="logos">
         <br>
@@ -421,6 +421,22 @@ if($_SESSION['name'] !== ""&&$_SESSION['mdp']!==""&&$_SESSION['Atype']!==""){
             ?>
                 </dl>
             </div>
+            <?php
+            if($Atype=="vendeur" || $Atype=="admin")
+            {
+
+                echo "<td><form action=\"ItemSetting.php\" method=\"post\"><input type=\"submit\" value=\"AddItem\" /></form></td>";
+
+            /*echo"<div>";
+            echo"<form action='Newitem.php' method='post'>";
+            echo"<td colspan='2' align='center' ";
+            echo"<input type='submit' name='sub' value='additem' style='color:red'>";
+            echo"</td>";
+            echo"</form>";
+            echo"</div>";*/
+            }
+
+            ?>
         </div>
         <div class="My basket" style="visibility: hidden; position: absolute;">
             <h3 style="text-decoration: underline; text-align: center;">Bienvenue dans votre centre de contrôle:</h3>
@@ -522,6 +538,6 @@ if($_SESSION['name'] !== ""&&$_SESSION['mdp']!==""&&$_SESSION['Atype']!==""){
         </div> -->
     </div>
     <script src="index.js"></script>
-    </form>
+    <!--</form>-->
 </body>
 </html>
