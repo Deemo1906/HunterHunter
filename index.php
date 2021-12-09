@@ -443,7 +443,7 @@ if($_SESSION['name'] !== ""&&$_SESSION['mdp']!==""&&$_SESSION['Atype']!==""){
                     <?php
                         if($Atype=="client")
                         {
-                    echo"<input type='submit' value='Valider votre panier'  onclick='window.open('pay.php','popup','width=600,height=600')' >";
+                    echo"<input type='submit' value='Valider votre panier'  onclick='window.open(pay.php,popup,width=600,height=600)' >";
                         }
                     ?>
             </div>
