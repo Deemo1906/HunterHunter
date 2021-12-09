@@ -421,6 +421,7 @@ if($_SESSION['name'] !== ""&&$_SESSION['mdp']!==""&&$_SESSION['Atype']!==""){
             ?>
                 </dl>
             </div>
+            <div>
             <?php
             if($Atype=="vendeur" || $Atype=="admin")
             {
@@ -431,7 +432,57 @@ if($_SESSION['name'] !== ""&&$_SESSION['mdp']!==""&&$_SESSION['Atype']!==""){
             }
 
             ?>
+            </div>
+
+            <div style="color:white">
+                
+                <?php
+            if($Atype=="admin")
+            {
+                if($db_found)
+                {
+                $sqlV = "SELECT Pseudo FROM vendeur WHERE IdVendeur!=2";
+                $resultV = mysqli_query($db_handle, $sqlV);
+
+                
+                echo "<th >";
+                echo "Supprimer vendeur : " ;
+                echo "</th><br><br>";
+                echo"<form action='SuppV.php' method='post'>";
+                while ($dataV = mysqli_fetch_assoc($resultV)){
+
+
+                
+                    $pseud=$dataV['Pseudo'];
+                
+                //echo "<td >".  $dataV['Pseudo'] . "</td><br><br>";
+                echo "<input type='button' value='$pseud'/>";
+                echo"<br><br>";
+
+                
+        
+        
+
+        
+                }
+                echo"<input type='text' name='suppr'/>";
+                echo"<input type=\"submit\" value=\"Delete Seller\" />";
+                echo"</form>";
+               
+
+
+        
+        
+
+            
+            }
+        }
+
+            ?>
+            
+            </div>
         </div>
+
         <div class="My basket" style="visibility: hidden; position: absolute;">
             <h3 style="text-decoration: underline; text-align: center;">Bienvenue dans votre centre de contrôle:</h3>
             <div id=Panier>
