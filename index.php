@@ -427,13 +427,7 @@ if($_SESSION['name'] !== ""&&$_SESSION['mdp']!==""&&$_SESSION['Atype']!==""){
 
                 echo "<td><form action=\"ItemSetting.php\" method=\"post\"><input type=\"submit\" value=\"AddItem\" /></form></td>";
 
-            /*echo"<div>";
-            echo"<form action='Newitem.php' method='post'>";
-            echo"<td colspan='2' align='center' ";
-            echo"<input type='submit' name='sub' value='additem' style='color:red'>";
-            echo"</td>";
-            echo"</form>";
-            echo"</div>";*/
+            
             }
 
             ?>
@@ -446,7 +440,12 @@ if($_SESSION['name'] !== ""&&$_SESSION['mdp']!==""&&$_SESSION['Atype']!==""){
                     <img class="unselected" src="img2.jpg" height="100px" width="100px" onclick="gotoitem(this, event)">
                     <img class="unselected" src="img2.jpg" height="100px" width="100px" onclick="gotoitem(this, event)">
                     <br>
-                    <input type="submit" value="Valider votre panier"  onclick="window.open('pay.php','popup','width=600,height=600')" >
+                    <?php
+                        if($Atype=="client")
+                        {
+                    echo"<input type='submit' value='Valider votre panier'  onclick='window.open('pay.php','popup','width=600,height=600')' >";
+                        }
+                    ?>
             </div>
             <div id=Historique>
                 <h3>Mon Historique d'achats</h3>
