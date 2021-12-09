@@ -35,10 +35,12 @@
         	{
         		$sqlt = "SELECT IdVendeur FROM vendeur where Pseudo = '".$_SESSION['name']."'";
         		$exec_sqlt = mysqli_query($db_handle,$sqlt);
-        		$data = mysqli_fetch_assoc($sqlt);
+        		$data = mysqli_fetch_assoc($exec_sqlt);
+
+            $idVendeur=$data['IdVendeur'];
             
         		$sql = "INSERT INTO item (Name, Description, Price, SaleType,Category,Photo,IdAdmin,Idvendeur)
-	VALUES('$name','$Description','$price','$saletype','$category','photo',1,$data['IdVendeur'])";
+	VALUES('$name','$Description','$price','$saletype','$category','photo','1','$idVendeur')";
     		mysqli_query($db_handle,$sql);
            header('Location: index.php');
 
@@ -48,10 +50,12 @@
         	{
         		$sqlt = "SELECT IdAdmin FROM admin where Pseudo = '".$_SESSION['name']."'";
         		$exec_sqlt = mysqli_query($db_handle,$sqlt);
-        		$data = mysqli_fetch_assoc($sqlt);
+        		$data = mysqli_fetch_assoc($exec_sqlt);
+
+            $idAdmin=$data['IdAdmin'];
             
         		$sql = "INSERT INTO item (Name, Description, Price, SaleType,Category,Photo,IdAdmin,Idvendeur)
-	VALUES('$name','$Description','$price','$saletype','$category','photo',$data['IdAdmin'],2)";
+	VALUES('$name','$Description','$price','$saletype','$category','photo','$idAdmin','2')";
     		mysqli_query($db_handle,$sql);
            header('Location: index.php');
 
