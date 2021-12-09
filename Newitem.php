@@ -40,7 +40,7 @@
             $idVendeur=$data['IdVendeur'];
             
         		$sql = "INSERT INTO item (Name, Description, Price, SaleType,Category,Photo,IdAdmin,Idvendeur)
-	VALUES('$name','$Description','$price','$saletype','$category','photo','1','$idVendeur')";
+	VALUES('$name','$Description','$price','$saletype','$category','$photo','1','$idVendeur')";
     		mysqli_query($db_handle,$sql);
            header('Location: index.php');
 
@@ -55,7 +55,7 @@
             $idAdmin=$data['IdAdmin'];
             
         		$sql = "INSERT INTO item (Name, Description, Price, SaleType,Category,Photo,IdAdmin,Idvendeur)
-	VALUES('$name','$Description','$price','$saletype','$category','photo','$idAdmin','2')";
+	VALUES('$name','$Description','$price','$saletype','$category','$photo','$idAdmin','2')";
     		mysqli_query($db_handle,$sql);
            header('Location: index.php');
 

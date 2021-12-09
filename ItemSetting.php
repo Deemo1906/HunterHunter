@@ -45,6 +45,7 @@
                 <td id="text">Photo:</td>
                 <br>
                 <td><input type="text" name="photo"></td>
+                
             </tr>
             
         </div>
@@ -55,6 +56,14 @@
         <td colspan="2" align="center">
         <input type="submit" name="submit" value="AddNewItem">
         </td>
+        <?php
+
+                    if(isset($_GET['erreur'])){
+                    $err = $_GET['erreur'];
+                    if($err==1 || $err==2)
+                        echo "<p style='color:red'><br>existing product or incomplete fields<br> </p>";
+                            }
+                    ?>
 
         </tr>
 
