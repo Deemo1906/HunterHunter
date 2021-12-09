@@ -78,13 +78,18 @@
                 if(isset($_GET['erreur'])){
                     $err = $_GET['erreur'];
                     if($err==1)
+                    {
                         echo "<p style='color:red'>Vos données ont bien été enregistrées<br> </p>";
+
+                    }
                     elseif($err==2)
                     {
                         echo"<p style='color:red'>Veuillez remplir tous les champs pour valider le paiement<br></p>";
                     }
                 }
         ?>
+        <p>Pour retourner au menu principal: Cliquez <a href="index.php">ici</a><br></p>
+
         <h3 style="color: red;">Any unauthorized use of this site will result in deadly force</h3>
     </div>
     </form>
