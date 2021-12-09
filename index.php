@@ -250,7 +250,7 @@ if($_SESSION['name'] !== ""&&$_SESSION['mdp']!==""&&$_SESSION['Atype']!==""){
                         <img src="netero.jpg" style="float: left; width: 100%;">
                     </div>
                     <div id="right">
-                        <h3 style="float: right; text-align: center;">Netero is just gobbling pussy right now he will never die I repeat he will NEVER DIE</h3>
+                        <h3 style="float: right; text-align: center;">Netero is re-elected president of the Hunter Association</h3>
                     </div>
                 </div>
             </div>
