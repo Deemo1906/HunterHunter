@@ -14,10 +14,18 @@ if(!$conn){
 $bid = $_GET['bid'];
 $imgName = $_GET['img'];
 
-$data = "SELECT Price FROM item WHERE Photo = '$imgName'"
+$data = "SELECT Price FROM item WHERE Photo = '$imgName'";
+$price = mysqli_query($conn,$data);
+$pricefetch = mysqli_fetch_assoc($price);
+$pricefin = $pricefetch['Price'];
+
+echo $bid;
+echo "<br>";
+echo $pricefin;
 
 
-if ($data < $bid) {
+
+if ($pricefin < $bid) {
     $send = "UPDATE item SET Price = '$bid' WHERE Photo = '$imgName'";
 
     if(mysqli_query($conn,$send)){
@@ -28,6 +36,8 @@ if ($data < $bid) {
 }else{
     echo "price not right";
 }
+
+header('Location: index.php');
 
 
 

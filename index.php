@@ -268,6 +268,7 @@ if($_SESSION['name'] !== ""&&$_SESSION['mdp']!==""&&$_SESSION['Atype']!==""){
                             document.getElementById("priceItem").innerHTML = pricetot[indexImg];
                             document.getElementById("bid").style.visibility = "hidden";
                             document.getElementById("bidB").style.visibility = "hidden";
+                            document.getElementById("namepicinput").value = imgtotN[indexImg];
                             //console.log(imgtot.indexOf(el.src.replace(/^.*[\\\/]/, '')));
                         }
 
@@ -337,7 +338,6 @@ if($_SESSION['name'] !== ""&&$_SESSION['mdp']!==""&&$_SESSION['Atype']!==""){
                 <img class="mainpic">
             </div>
             <div id="desc">
-                <form method= "get" name="form" action="update.php">
                 <dl style="color: white;">
                     <dt>Price</dt>
                     <dl id = "priceItem" name = "price">150 000</dl>
@@ -347,8 +347,9 @@ if($_SESSION['name'] !== ""&&$_SESSION['mdp']!==""&&$_SESSION['Atype']!==""){
                 </dl>
                 <input type="button" value="Add to basquet "onclick="addItem(this,event)">
                 <input type="button" value="Wishlist" onclick="wishlist(this,event)">
+                <form method= "get" name="form" action="update.php">
                 <input id = "bid" type="number" name="bid">
-                <input id="namepicinput" type="text"  name="img" value="">
+                <input id="namepicinput" type="text"  name="img" value="" style="visibility: hidden;position: absolute;">
                 <input id = "bidB" type="submit" value="Increase bid" onclick="newBid(this)">
                 </form>
                 <br>
@@ -366,6 +367,7 @@ if($_SESSION['name'] !== ""&&$_SESSION['mdp']!==""&&$_SESSION['Atype']!==""){
                         document.getElementById("priceItem").innerHTML = pricetot[indexImgD];
                         document.getElementById("bid").style.visibility = "hidden";
                         document.getElementById("bidB").style.visibility = "hidden";
+                        document.getElementById("namepicinput").value = imgtotD[indexImgD];
                     }
                 </script>
             </div>
