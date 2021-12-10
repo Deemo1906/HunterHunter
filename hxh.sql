@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : mer. 08 déc. 2021 à 15:08
+-- Généré le : ven. 10 déc. 2021 à 10:47
 -- Version du serveur :  5.7.31
 -- Version de PHP : 7.3.21
 
@@ -68,14 +68,50 @@ CREATE TABLE IF NOT EXISTS `client` (
   `DateExp` date DEFAULT NULL,
   `CardCode` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`IdClient`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `client`
 --
 
 INSERT INTO `client` (`IdClient`, `Name`, `Mail`, `Pseudo`, `Password`, `Adress`, `City`, `PostalCode`, `Country`, `NumTel`, `CardType`, `CardNum`, `CardName`, `DateExp`, `CardCode`) VALUES
-(4, 'flo', 'flo@gmail.com', 'flolebest', 'caca', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+(4, 'flo', 'flo@gmail.com', 'flolebest', 'caca', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(5, 'florian', 'pussyslayer@ph.com', 'pussyslayer', 'pussy', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `commande`
+--
+
+DROP TABLE IF EXISTS `commande`;
+CREATE TABLE IF NOT EXISTS `commande` (
+  `IdCommande` int(11) NOT NULL AUTO_INCREMENT,
+  `Adress` varchar(255) NOT NULL,
+  `City` varchar(255) NOT NULL,
+  `PostalCode` varchar(255) NOT NULL,
+  `Country` varchar(255) NOT NULL,
+  `Price` int(11) NOT NULL,
+  `NomAcheteur` varchar(255) NOT NULL,
+  `NumItem` int(11) NOT NULL,
+  `IdPanier` int(11) NOT NULL,
+  PRIMARY KEY (`IdCommande`),
+  KEY `IdPanier` (`IdPanier`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `comporter`
+--
+
+DROP TABLE IF EXISTS `comporter`;
+CREATE TABLE IF NOT EXISTS `comporter` (
+  `IdItem` int(11) NOT NULL,
+  `IdPanier` int(11) NOT NULL,
+  PRIMARY KEY (`IdItem`,`IdPanier`),
+  KEY `IdPanier` (`IdPanier`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -97,7 +133,7 @@ CREATE TABLE IF NOT EXISTS `item` (
   PRIMARY KEY (`Iditem`),
   KEY `IdAdmin` (`IdAdmin`),
   KEY `IdVendeur` (`IdVendeur`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `item`
@@ -113,7 +149,9 @@ INSERT INTO `item` (`Iditem`, `Name`, `Description`, `Price`, `SaleType`, `Categ
 (8, 'Killua\'s Skateboard', 'This board was owned by one of the most famous hunters in the world.', 12000, 'Negotiation', 'Regular', 'board.jpg', 1, 2),
 (9, 'Gon\'s fishing rod', 'A fishing rod that can be used for fishing or as a powerful weapon. It was once used in a Hunter exam.', 12000, 'Auction', 'Haut de gamme', 'fishing-rod.png', 1, 2),
 (10, 'Gun-gi board', 'Gungi is a two-player strategy board game from the Republic of East Gorteau.', 30000, 'Direct', 'Rare', 'gungi.jpg', 1, 2),
-(11, 'Poor Man\'s Rose', 'Poor Man\'s Rose is a chemo-explosive weapon of mass destruction and one of the most powerful and dangerous weapons in the world.', 500000, 'Direct', 'Rare', 'rose.png', 1, 2);
+(11, 'Poor Man\'s Rose', 'Poor Man\'s Rose is a chemo-explosive weapon of mass destruction and one of the most powerful and dangerous weapons in the world.', 500000, 'Direct', 'Rare', 'rose.png', 1, 2),
+(12, 'mabite', '', 1000000, 'direct', 'rare', 'photo', 1, 2),
+(13, 'long sword', '', 350, 'direct', 'common', 'photo', 1, 2);
 
 -- --------------------------------------------------------
 
@@ -128,7 +166,7 @@ CREATE TABLE IF NOT EXISTS `login` (
   `Password` varchar(255) NOT NULL,
   `AccountType` varchar(255) NOT NULL,
   PRIMARY KEY (`IdLogin`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `login`
@@ -136,7 +174,22 @@ CREATE TABLE IF NOT EXISTS `login` (
 
 INSERT INTO `login` (`IdLogin`, `Pseudo`, `Password`, `AccountType`) VALUES
 (1, 'Netero', 'HXH2021', 'admin'),
-(13, 'Deemo1906', '19062001Hh', 'vendeur');
+(13, 'Deemo1906', '19062001Hh', 'vendeur'),
+(14, 'pussyslayer', 'pussy', 'client');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `panier`
+--
+
+DROP TABLE IF EXISTS `panier`;
+CREATE TABLE IF NOT EXISTS `panier` (
+  `IdPanier` int(11) NOT NULL AUTO_INCREMENT,
+  `IdClient` int(11) NOT NULL,
+  PRIMARY KEY (`IdPanier`),
+  KEY `IdClient` (`IdClient`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -154,7 +207,7 @@ CREATE TABLE IF NOT EXISTS `vendeur` (
   `Password` varchar(255) NOT NULL,
   `Background` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`IdVendeur`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `vendeur`
@@ -168,11 +221,30 @@ INSERT INTO `vendeur` (`IdVendeur`, `Name`, `Mail`, `Pseudo`, `Photo`, `Password
 --
 
 --
+-- Contraintes pour la table `commande`
+--
+ALTER TABLE `commande`
+  ADD CONSTRAINT `commande_ibfk_1` FOREIGN KEY (`IdPanier`) REFERENCES `panier` (`IdPanier`);
+
+--
+-- Contraintes pour la table `comporter`
+--
+ALTER TABLE `comporter`
+  ADD CONSTRAINT `comporter_ibfk_1` FOREIGN KEY (`IdItem`) REFERENCES `item` (`Iditem`),
+  ADD CONSTRAINT `comporter_ibfk_2` FOREIGN KEY (`IdPanier`) REFERENCES `panier` (`IdPanier`);
+
+--
 -- Contraintes pour la table `item`
 --
 ALTER TABLE `item`
   ADD CONSTRAINT `item_ibfk_1` FOREIGN KEY (`IdAdmin`) REFERENCES `admin` (`IdAdmin`),
   ADD CONSTRAINT `item_ibfk_2` FOREIGN KEY (`IdVendeur`) REFERENCES `vendeur` (`IdVendeur`);
+
+--
+-- Contraintes pour la table `panier`
+--
+ALTER TABLE `panier`
+  ADD CONSTRAINT `panier_ibfk_1` FOREIGN KEY (`IdClient`) REFERENCES `client` (`IdClient`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
