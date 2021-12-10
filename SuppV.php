@@ -21,6 +21,12 @@
         $requete = "DELETE FROM vendeur where 
               Pseudo = '".$suppr."' ";
         $exec_requete = mysqli_query($db_handle,$requete);
+
+        $requete1 = "DELETE FROM login where 
+              Pseudo = '".$suppr."' ";
+        $exec_requete1 = mysqli_query($db_handle,$requete1);
+
+
         
         header('Location: index.php');
         
