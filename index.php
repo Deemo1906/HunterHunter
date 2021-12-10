@@ -160,10 +160,11 @@ if($_SESSION['name'] !== ""&&$_SESSION['mdp']!==""&&$_SESSION['Atype']!==""){
                     if($_GET['disconnect']==true)
                     {
                        session_unset();
-                       $sqlSP="DELETE FROM panier";
-                       mysqli_query($db_handle,$sqlSP);
                        $sqlSC="DELETE FROM comporter";
-                       mysqli_query($db_handle,$sqlSC);
+                       $exec2=mysqli_query($db_handle,$sqlSC);
+                       $sql6="DELETE FROM panier";
+                       $exec1=mysqli_query($db_handle,$sql6);
+                       
 
                        header("location:Log.php");
                    }
