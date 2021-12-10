@@ -62,18 +62,18 @@ $data = mysqli_fetch_assoc($result);
 $data2 = mysqli_fetch_assoc($result2);
 $data3 = mysqli_fetch_assoc($result3);
 
-$img = $data['Photo'];
-$img2 = $data2['Photo'];
-$img3 = $data3['Photo'];
-$text = $data['Name'];
-$text2 = $data2['Name'];
-$text3 = $data3['Name'];
-$desc = $data['Description'];
-$desc2 = $data2['Description'];
-$desc3 = $data3['Description'];
-$price = $data['Price'];
-$price2 = $data2['Price'];
-$price3 = $data3['Price'];
+// $img = $data['Photo'];
+// $img2 = $data2['Photo'];
+// $img3 = $data3['Photo'];
+// $text = $data['Name'];
+// $text2 = $data2['Name'];
+// $text3 = $data3['Name'];
+// $desc = $data['Description'];
+// $desc2 = $data2['Description'];
+// $desc3 = $data3['Description'];
+// $price = $data['Price'];
+// $price2 = $data2['Price'];
+// $price3 = $data3['Price'];
 
 if($_SESSION['name'] !== ""&&$_SESSION['mdp']!==""&&$_SESSION['Atype']!==""){
                     $pseudo = $_SESSION['name'];
@@ -136,7 +136,7 @@ if($_SESSION['name'] !== ""&&$_SESSION['mdp']!==""&&$_SESSION['Atype']!==""){
     <div id="Wrapper">
         <div class="topnav">
             <a id="Home" class="active" onclick="change(this, event)">Home</a>
-            <a id="All available items" onclick = "change(this, event)">All available items</a>
+            <a id="All available items" onclick = "change(this, event), setAll()">All available items</a>
             <a id="Notifications" onclick="change(this, event)">Notifications</a>
             <a id="My basket" onclick="change(this, event)">My basket</a>
             <a id="My account" onclick="change(this, event)">My account</a>
@@ -228,16 +228,50 @@ if($_SESSION['name'] !== ""&&$_SESSION['mdp']!==""&&$_SESSION['Atype']!==""){
                     <img class="imgA" src="17.jpg" onclick="gotoitem(this, event); descA(this) ">
 
                     <script type = "text/javascript">
-                        var imgtot = <?php echo json_encode($imgA); ?>;
+                        var imgtotD = <?php echo json_encode($imgD); ?>;
+                        var imgtotA = <?php echo json_encode($imgA); ?>;
                         for (let i = 0; i<3;i++) {
-                            document.getElementsByClassName("imgA")[i].src =imgtot[i];
+                            document.getElementsByClassName("imgA")[i].src =imgtotA[i];
                         };
-
+                        
                         function descA(el){
                             var desctot = <?php echo json_encode($descA); ?>;
-                            var indexImg = imgtot.indexOf(el.src.replace(/^.*[\\\/]/, ''))
+                            var pricetot = <?php echo json_encode($priceA); ?>;
+                            var indexImg = imgtotA.indexOf(el.src.replace(/^.*[\\\/]/, ''))
                             document.getElementById("description").innerHTML = desctot[indexImg];
+                            document.getElementById("priceItem").innerHTML = pricetot[indexImg];
+                            document.getElementById("bid").style.visibility = "inherit";
+                            document.getElementById("bidB").style.visibility = "inherit";
                             //console.log(imgtot.indexOf(el.src.replace(/^.*[\\\/]/, '')));
+                        }
+
+                        function setAll(){
+                            setAllA(imgtotA, "auctions");
+                            setAllA(imgtotD, "buynow");
+                        }
+
+                        function setAllA(img, position){
+                            for(let i = 0; i<imgtotA.length;i++){
+                                var elemImgA = document.createElement("img");
+                                console.log("test");
+                                elemImgA.src = img[i];
+                                elemImgA.style.height = "100px";
+                                elemImgA.style.width = "100px";
+                                if(position == "auctions"){
+                                    elemImgA.onclick = function(){
+                                    gotoitem(this, event);
+                                    descA(this);};
+                                }else{
+                                    elemImgA.onclick = function(){
+                                    gotoitem(this, event);
+                                    setdesc(this);};
+                                }
+                                var positionA = document.getElementById(position);
+                                positionA.appendChild(elemImgA);
+                            }
+                            document.getElementById("All available items").onclick = function(){
+                                change(this, event);
+                            }
                         }
                     </script>
 
@@ -255,6 +289,18 @@ if($_SESSION['name'] !== ""&&$_SESSION['mdp']!==""&&$_SESSION['Atype']!==""){
                 </div>
             </div>
         </div>
+
+        <script type = "text/javascript">
+            function newBid(el){
+                var bid = document.getElementById("bid").value;
+                var current = document.getElementById("priceItem").innerHTML;
+                if(bid <= current){
+                    document.getElementById("errorbid").innerHTML = "your bid is too low";
+                }else{
+                    document.getElementById("errorbid").innerHTML = "New bid has been set";
+                }
+            }
+        </script>
         <div id="itempageB" style="visibility: hidden;position: absolute;">
             <div id="img3040" >
                 <img class="mainpic">
@@ -262,29 +308,30 @@ if($_SESSION['name'] !== ""&&$_SESSION['mdp']!==""&&$_SESSION['Atype']!==""){
             <div id="desc">
                 <dl style="color: white;">
                     <dt>Price</dt>
-                    <dl>150 000</dl>
+                    <dl id = "priceItem">150 000</dl>
                     <dt>Date of arrival</dt>
                     <dl>19-06-2001</dl>
                     <dt id="demo"></dt>
                 </dl>
                 <input type="button" value="Add to basquet "onclick="addItem(this,event)">
                 <input type="button" value="Wishlist" onclick="wishlist(this,event)">
+                <input id = "bid" type="number" >
+                <input id = "bidB" type="button" value="Increase bid" onclick="newBid(this)">
+                <br>
+                <h3 id="errorbid"></h3>
             </div>
             <div id="textd">
                 <h3 id="description"></h3>
                 <script type = "text/javascript">
                     imgtotD = <?php echo json_encode($imgD); ?>;
                     function setdesc(el){
-                        // if(document.getElementsByClassName('mainpic')[0].src == "http://localhost/HunterHunter/000.jpg"){
-                        //     console.log("test1")
-                        //     document.getElementById("description").innerHTML = "<?php echo $desc2; ?>";
-                        // }else{
-                        //     console.log("test2")
-                        //     document.getElementById("description").innerHTML = "<?php echo $desc; ?>";
-                        // }
                         var desctotD = <?php echo json_encode($descD); ?>;
+                        var pricetot = <?php echo json_encode($priceD); ?>;
                         var indexImgD = imgtotD.indexOf(el.src.replace(/^.*[\\\/]/, ''))
                         document.getElementById("description").innerHTML = desctotD[indexImgD];
+                        document.getElementById("priceItem").innerHTML = pricetot[indexImgD];
+                        document.getElementById("bid").style.visibility = "hidden";
+                        document.getElementById("bidB").style.visibility = "hidden";
                     }
                 </script>
             </div>
@@ -297,15 +344,11 @@ if($_SESSION['name'] !== ""&&$_SESSION['mdp']!==""&&$_SESSION['Atype']!==""){
                 <img src="netero.jpg" style="max-width: 400px;max-height: 400px; width: 200%;">
             </div>
             <div id="right" style="background-image: url('back.jpg'); background-size: cover;">
-                
                     <?php
-                
                     echo"<dl id='info' style='color: white;''>";
-                 
 
                     if($Atype=="client")
                     {
-                        
 
 
 
@@ -323,21 +366,14 @@ if($_SESSION['name'] !== ""&&$_SESSION['mdp']!==""&&$_SESSION['Atype']!==""){
                             while ($data = mysqli_fetch_assoc($resultc)) {
 
 
-                                
-                                    
                                     echo"<dt >Name:   </dt>";
                                     echo"<dl >" . $data['Name'] . "</dl>";
                                     echo"<dt >Pseudo:   </dt>";
                                     echo"<dl >". $data['Pseudo'] ."</dl>";
                                     echo"<dt >Mail:   </dt>";
                                     echo"<dl >". $data['Mail'] ."</dl>";
-                                
-                                
-                                    
                                 }
-                            
-                        } 
-                        
+                        }
                     }
 
                     elseif($Atype=="vendeur")
@@ -353,22 +389,14 @@ if($_SESSION['name'] !== ""&&$_SESSION['mdp']!==""&&$_SESSION['Atype']!==""){
                             $resultv = mysqli_query($db_handle, $sqlv);
 
                             while ($data = mysqli_fetch_assoc($resultv)) {
-
-
-                                
-                                    
                                     echo"<dt >Name:   </dt>";
                                     echo"<dl >" . $data['Name'] . "</dl>";
                                     echo"<dt >Pseudo:   </dt>";
                                     echo"<dl >". $data['Pseudo'] ."</dl>";
                                     echo"<dt >Mail:   </dt>";
                                     echo"<dl >". $data['Mail'] ."</dl>";
-                                
-                                
-                                    
                                 }
-                            
-                        } 
+                        }
                     }
                     elseif($Atype=="admin")
                     {
@@ -384,25 +412,17 @@ if($_SESSION['name'] !== ""&&$_SESSION['mdp']!==""&&$_SESSION['Atype']!==""){
 
                             while ($data = mysqli_fetch_assoc($resulta)) {
 
-
-                                
-                                    
                                     echo"<dt >Name:   </dt>";
                                     echo"<dl >" . $data['Name'] . "</dl>";
                                     echo"<dt >Pseudo:   </dt>";
                                     echo"<dl >". $data['Pseudo'] ."</dl>";
                                     echo"<dt >Mail:   </dt>";
                                     echo"<dl >". $data['Mail'] ."</dl>";
-                                
-                                
-                                    
                                 }
-                            
-                        } 
+                        }
                     }
                     echo"</dl>";
 
-                
                 /*<div id="img3040">
                 <img src="netero.jpg" style="max-width: 400px;max-height: 400px; width: 200%;">
             </div>
@@ -428,14 +448,12 @@ if($_SESSION['name'] !== ""&&$_SESSION['mdp']!==""&&$_SESSION['Atype']!==""){
 
                 echo "<td><form action=\"ItemSetting.php\" method=\"post\"><input type=\"submit\" value=\"AddItem\" /></form></td>";
 
-            
             }
 
             ?>
             </div>
 
             <div style="color:white">
-                
                 <?php
             if($Atype=="admin")
             {
@@ -444,7 +462,7 @@ if($_SESSION['name'] !== ""&&$_SESSION['mdp']!==""&&$_SESSION['Atype']!==""){
                 $sqlV = "SELECT Pseudo FROM vendeur WHERE IdVendeur!=2";
                 $resultV = mysqli_query($db_handle, $sqlV);
 
-                
+
                 echo "<th >";
                 echo "Supprimer vendeur : " ;
                 echo "</th><br><br>";
@@ -452,34 +470,21 @@ if($_SESSION['name'] !== ""&&$_SESSION['mdp']!==""&&$_SESSION['Atype']!==""){
                 while ($dataV = mysqli_fetch_assoc($resultV)){
 
 
-                
                     $pseud=$dataV['Pseudo'];
-                
                 //echo "<td >".  $dataV['Pseudo'] . "</td><br><br>";
                 echo "<input type='button' value='$pseud'/>";
                 echo"<br><br>";
 
-                
-        
-        
-
-        
                 }
                 echo"<input type='text' name='suppr'/>";
                 echo"<input type=\"submit\" value=\"Delete Seller\" />";
                 echo"</form>";
-               
 
-
-        
-        
-
-            
             }
         }
 
             ?>
-            
+
             </div>
         </div>
 
@@ -516,13 +521,13 @@ if($_SESSION['name'] !== ""&&$_SESSION['mdp']!==""&&$_SESSION['Atype']!==""){
             </div>
         </div>
         <div class="All available items" style="visibility: hidden; position: absolute;">
-            <div id="trending">
+            <div id="trending" style="visibility: hidden; position: absolute;">
                 <h3>En ce moment:</h3>
                 <img src="img2.jpg" height="100px" width="100px" onclick="gotoitem(this, event)">
                 <img src="img2.jpg" height="100px" width="100px" onclick="gotoitem(this, event)">
                 <img src="img2.jpg" height="100px" width="100px" onclick="gotoitem(this, event)">
             </div>
-            <div id="comingsoon">
+            <div id="comingsoon" style="visibility: hidden; position: absolute;">
                 <h3>À venir:</h3>
                 <img src="img2.jpg" height="100px" width="100px" onclick="gotoitem(this, event)">
                 <img src="img2.jpg" height="100px" width="100px" onclick="gotoitem(this, event)">
@@ -530,15 +535,9 @@ if($_SESSION['name'] !== ""&&$_SESSION['mdp']!==""&&$_SESSION['Atype']!==""){
             </div>
             <div id="auctions">
                 <h3>Enchères:</h3>
-                <img src="img2.jpg" height="100px" width="100px" onclick="gotoitem(this, event)">
-                <img src="img2.jpg" height="100px" width="100px" onclick="gotoitem(this, event)">
-                <img src="img2.jpg" height="100px" width="100px" onclick="gotoitem(this, event)">
             </div>
             <div id="buynow">
                 <h3>Acheter tout de suite:</h3>
-                <img src="img2.jpg" height="100px" width="100px" onclick="gotoitem(this, event)">
-                <img src="img2.jpg" height="100px" width="100px" onclick="gotoitem(this, event)">
-                <img src="img2.jpg" height="100px" width="100px" onclick="gotoitem(this, event)">
             </div>
         </div>
         <div class="Notifications" style="visibility: hidden; position: absolute;">
