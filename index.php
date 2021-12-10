@@ -160,6 +160,11 @@ if($_SESSION['name'] !== ""&&$_SESSION['mdp']!==""&&$_SESSION['Atype']!==""){
                     if($_GET['disconnect']==true)
                     {
                        session_unset();
+                       $sqlSP="DELETE FROM panier";
+                       $sqlSC="DELETE FROM comporter";
+                       mysqli_query($db_handle,$sqlSP);
+                       mysqli_query($db_handle,$sqlSC);
+
                        header("location:Log.php");
                    }
                  }
@@ -345,7 +350,11 @@ if($_SESSION['name'] !== ""&&$_SESSION['mdp']!==""&&$_SESSION['Atype']!==""){
                     <dl>19-06-2001</dl>
                     <dt id="demo"></dt>
                 </dl>
-                <input type="button" value="Add to basquet "onclick="addItem(this,event)">
+                <form action="AddBasket.php" method='get'>
+                <input id="namepicinput" type="text"  name="img" value="" style="visibility: hidden;position: absolute;">
+                <input type="submit" value="Add to basquet "onclick="addItem(this,event);newBid(this)">
+
+                </form>
                 <input type="button" value="Wishlist" onclick="wishlist(this,event)">
                 <form method= "get" name="form" action="update.php">
                 <input id = "bid" type="number" name="bid">
