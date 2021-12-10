@@ -81,13 +81,6 @@ function addbasquet(el, e){
   }
 }
 
-function newBid(this){
-  // var bid = document.getElementById("bid").value;
-  // var current = document.getElementById("priceItem").innerHTML;
-  // if(bid < current){
-  //   console.log("nahh");
-  // }
-}
 
 
 
