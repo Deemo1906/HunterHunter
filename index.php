@@ -544,7 +544,9 @@ if($_SESSION['name'] !== ""&&$_SESSION['mdp']!==""&&$_SESSION['Atype']!==""){
                     <?php
                         if($Atype=="client")
                         {
-                            echo "<td><form action=\"pay.php\" method=\"post\"><input type=\"submit\" value=\"Valider votre panier\" /></form></td>";
+                            echo "<td><form action=\"pay.php\" method=\"post\"><input type=\"submit\" value=\"Add Informations\" /></form></td>";
+
+                            echo "<td><form action=\"ValidateBasket.php\" method=\"post\"><input type=\"submit\" value=\"Validate basket\" /></form></td>";
                     //echo"<input type='submit' value='Valider votre panier'  onclick='window.open(pay.php,popup,width=600,height=600)' >";
                         }
                     ?>
