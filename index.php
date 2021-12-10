@@ -255,6 +255,7 @@ if($_SESSION['name'] !== ""&&$_SESSION['mdp']!==""&&$_SESSION['Atype']!==""){
                             document.getElementById("priceItem").innerHTML = pricetot[indexImg];
                             document.getElementById("bid").style.visibility = "inherit";
                             document.getElementById("bidB").style.visibility = "inherit";
+                            document.getElementById("namepicinput").value = imgtotA[indexImg];
                             //console.log(imgtot.indexOf(el.src.replace(/^.*[\\\/]/, '')));
                         }
 
@@ -347,6 +348,7 @@ if($_SESSION['name'] !== ""&&$_SESSION['mdp']!==""&&$_SESSION['Atype']!==""){
                 <input type="button" value="Add to basquet "onclick="addItem(this,event)">
                 <input type="button" value="Wishlist" onclick="wishlist(this,event)">
                 <input id = "bid" type="number" name="bid">
+                <input id="namepicinput" type="text"  name="img" value="">
                 <input id = "bidB" type="submit" value="Increase bid" onclick="newBid(this)">
                 </form>
                 <br>
