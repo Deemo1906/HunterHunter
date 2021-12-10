@@ -27,10 +27,12 @@ $sql3 = "SELECT Name,Description,Price,Category,Photo FROM item where Name LIKE 
 
 $sqlD = "SELECT * FROM item where SaleType = 'Direct'";
 $sqlA = "SELECT * FROM item where SaleType = 'Auction'";
+$sqlN = "SELECT * FROM item where SaleType = 'Negotiation'";
 
 
 $resultA = mysqli_query($db_handle, $sqlA);
 $resultD = mysqli_query($db_handle, $sqlD);
+$resultN = mysqli_query($db_handle, $sqlN);
 
 
 $imgA = [];
@@ -40,6 +42,10 @@ $imgD = [];
 $descD = [];
 $priceD = [];
 $nameD = [];
+$imgN = [];
+$descN = [];
+$priceN = [];
+$nameN = [];
 while($dataA = mysqli_fetch_assoc($resultA)){
     array_push($imgA,$dataA['Photo']);
     array_push($descA,$dataA['Description']);
@@ -50,6 +56,12 @@ while($dataD = mysqli_fetch_assoc($resultD)){
     array_push($descD,$dataD['Description']);
     array_push($priceD,$dataD['Price']);
     array_push($nameD,$dataD['Name']);
+}
+while($dataN = mysqli_fetch_assoc($resultN)){
+    array_push($imgN,$dataN['Photo']);
+    array_push($descN,$dataN['Description']);
+    array_push($priceN,$dataN['Price']);
+    array_push($nameN,$dataN['Name']);
 }
 
 $result = mysqli_query($db_handle, $sql);
@@ -230,10 +242,11 @@ if($_SESSION['name'] !== ""&&$_SESSION['mdp']!==""&&$_SESSION['Atype']!==""){
                     <script type = "text/javascript">
                         var imgtotD = <?php echo json_encode($imgD); ?>;
                         var imgtotA = <?php echo json_encode($imgA); ?>;
+                        var imgtotN = <?php echo json_encode($imgN); ?>;
                         for (let i = 0; i<3;i++) {
                             document.getElementsByClassName("imgA")[i].src =imgtotA[i];
                         };
-                        
+
                         function descA(el){
                             var desctot = <?php echo json_encode($descA); ?>;
                             var pricetot = <?php echo json_encode($priceA); ?>;
@@ -245,13 +258,26 @@ if($_SESSION['name'] !== ""&&$_SESSION['mdp']!==""&&$_SESSION['Atype']!==""){
                             //console.log(imgtot.indexOf(el.src.replace(/^.*[\\\/]/, '')));
                         }
 
+                        function descN(el){
+                            var desctot = <?php echo json_encode($descN); ?>;
+                            console.log(desctot[0])
+                            var pricetot = <?php echo json_encode($priceN); ?>;
+                            var indexImg = imgtotN.indexOf(el.src.replace(/^.*[\\\/]/, ''))
+                            document.getElementById("description").innerHTML = desctot[indexImg];
+                            document.getElementById("priceItem").innerHTML = pricetot[indexImg];
+                            document.getElementById("bid").style.visibility = "hidden";
+                            document.getElementById("bidB").style.visibility = "hidden";
+                            //console.log(imgtot.indexOf(el.src.replace(/^.*[\\\/]/, '')));
+                        }
+
                         function setAll(){
                             setAllA(imgtotA, "auctions");
                             setAllA(imgtotD, "buynow");
+                            setAllA(imgtotN, "negotiations");
                         }
 
                         function setAllA(img, position){
-                            for(let i = 0; i<imgtotA.length;i++){
+                            for(let i = 0; i<img.length;i++){
                                 var elemImgA = document.createElement("img");
                                 console.log("test");
                                 elemImgA.src = img[i];
@@ -261,10 +287,14 @@ if($_SESSION['name'] !== ""&&$_SESSION['mdp']!==""&&$_SESSION['Atype']!==""){
                                     elemImgA.onclick = function(){
                                     gotoitem(this, event);
                                     descA(this);};
-                                }else{
+                                }else if(position == "buynow"){
                                     elemImgA.onclick = function(){
                                     gotoitem(this, event);
                                     setdesc(this);};
+                                }else{
+                                    elemImgA.onclick = function(){
+                                    gotoitem(this, event);
+                                    descN(this);};
                                 }
                                 var positionA = document.getElementById(position);
                                 positionA.appendChild(elemImgA);
@@ -306,17 +336,19 @@ if($_SESSION['name'] !== ""&&$_SESSION['mdp']!==""&&$_SESSION['Atype']!==""){
                 <img class="mainpic">
             </div>
             <div id="desc">
+                <form method= "get" name="form" action="update.php">
                 <dl style="color: white;">
                     <dt>Price</dt>
-                    <dl id = "priceItem">150 000</dl>
+                    <dl id = "priceItem" name = "price">150 000</dl>
                     <dt>Date of arrival</dt>
                     <dl>19-06-2001</dl>
                     <dt id="demo"></dt>
                 </dl>
                 <input type="button" value="Add to basquet "onclick="addItem(this,event)">
                 <input type="button" value="Wishlist" onclick="wishlist(this,event)">
-                <input id = "bid" type="number" >
-                <input id = "bidB" type="button" value="Increase bid" onclick="newBid(this)">
+                <input id = "bid" type="number" name="bid">
+                <input id = "bidB" type="submit" value="Increase bid" onclick="newBid(this)">
+                </form>
                 <br>
                 <h3 id="errorbid"></h3>
             </div>
@@ -527,17 +559,14 @@ if($_SESSION['name'] !== ""&&$_SESSION['mdp']!==""&&$_SESSION['Atype']!==""){
                 <img src="img2.jpg" height="100px" width="100px" onclick="gotoitem(this, event)">
                 <img src="img2.jpg" height="100px" width="100px" onclick="gotoitem(this, event)">
             </div>
-            <div id="comingsoon" style="visibility: hidden; position: absolute;">
-                <h3>À venir:</h3>
-                <img src="img2.jpg" height="100px" width="100px" onclick="gotoitem(this, event)">
-                <img src="img2.jpg" height="100px" width="100px" onclick="gotoitem(this, event)">
-                <img src="img2.jpg" height="100px" width="100px" onclick="gotoitem(this, event)">
+            <div id="negotiations" style="text-align:center">
+                <h3>Negotiation:</h3>
             </div>
             <div id="auctions">
-                <h3>Enchères:</h3>
+                <h3>Auctions:</h3>
             </div>
             <div id="buynow">
-                <h3>Acheter tout de suite:</h3>
+                <h3>Buy now:</h3>
             </div>
         </div>
         <div class="Notifications" style="visibility: hidden; position: absolute;">
