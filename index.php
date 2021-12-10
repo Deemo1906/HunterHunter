@@ -161,8 +161,8 @@ if($_SESSION['name'] !== ""&&$_SESSION['mdp']!==""&&$_SESSION['Atype']!==""){
                     {
                        session_unset();
                        $sqlSP="DELETE FROM panier";
-                       $sqlSC="DELETE FROM comporter";
                        mysqli_query($db_handle,$sqlSP);
+                       $sqlSC="DELETE FROM comporter";
                        mysqli_query($db_handle,$sqlSC);
 
                        header("location:Log.php");
