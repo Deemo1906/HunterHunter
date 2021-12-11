@@ -52,10 +52,10 @@ session_start();
 			$exec_sqlP = mysqli_query($db_handle,$sqlP);
 			$dataP = mysqli_fetch_assoc($exec_sqlP);
 			$IdPanier = $dataP['IdPanier'];
-			echo $Iditem;
+
 			$sqlComp="INSERT INTO comporter (IdItem,IdPanier) VALUES('$Iditem','$IdPanier') ";
 			mysqli_query($db_handle,$sqlComp);
     	}
-    	 header('Location: index.php');
+    	header('Location: index.php');
     	mysqli_close($db_handle);
 	?>
