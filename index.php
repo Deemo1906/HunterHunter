@@ -98,6 +98,42 @@ if($_SESSION['name'] !== ""&&$_SESSION['mdp']!==""&&$_SESSION['Atype']!==""){
 }
 
 
+$sqlt = "SELECT IdClient FROM client where Pseudo = '".$_SESSION['name']."'";
+$exec_sqlt = mysqli_query($db_handle,$sqlt);
+$dataC = mysqli_fetch_assoc($exec_sqlt);
+
+$idClient=$dataC['IdClient'];
+
+
+
+$itemBP = [];
+$sqlB = "SELECT IdPanier FROM panier where IdClient = '$idClient'";
+$exec_sqlB = mysqli_query($db_handle,$sqlB);
+if($dataB = mysqli_fetch_assoc($exec_sqlB)){
+    $idB = $dataB['IdPanier'];
+    $idsItem = [];
+    $sqlI = "SELECT IdItem FROM comporter where IdPanier = '$idB'";
+    $exec_sqlI = mysqli_query($db_handle,$sqlI);
+
+    while($dataI = mysqli_fetch_assoc($exec_sqlI)){
+        array_push($idsItem,$dataI['IdItem']);
+    }
+
+
+
+
+    foreach($idsItem as &$itemz){
+    $sqlP = "SELECT Photo FROM item where Iditem = '$itemz'";
+    $exec_sqlP = mysqli_query($db_handle,$sqlP);
+    $dataP = mysqli_fetch_assoc($exec_sqlP);
+    array_push($itemBP,$dataP['Photo']);
+    }
+
+    console_log($itemBP[0]);
+
+}
+
+
 ?>
 
 
@@ -150,7 +186,7 @@ if($_SESSION['name'] !== ""&&$_SESSION['mdp']!==""&&$_SESSION['Atype']!==""){
             <a id="Home" class="active" onclick="change(this, event)">Home</a>
             <a id="All available items" onclick = "change(this, event), setAll()">All available items</a>
             <a id="Notifications" onclick="change(this, event)">Notifications</a>
-            <a id="My basket" onclick="change(this, event)">My basket</a>
+            <a id="My basket" onclick="change(this, event), addItem()">My basket</a>
             <a id="My account" onclick="change(this, event)">My account</a>
             <a id="Sell" onclick="change(this, event)">Sell</a>
             <a href='index.php?disconnect=true'id="Disconnect">Disconnect</a>
@@ -164,7 +200,6 @@ if($_SESSION['name'] !== ""&&$_SESSION['mdp']!==""&&$_SESSION['Atype']!==""){
                        $exec2=mysqli_query($db_handle,$sqlSC);
                        $sql6="DELETE FROM panier";
                        $exec1=mysqli_query($db_handle,$sql6);
-                       
 
                        header("location:Log.php");
                    }
@@ -280,10 +315,16 @@ if($_SESSION['name'] !== ""&&$_SESSION['mdp']!==""&&$_SESSION['Atype']!==""){
                             //console.log(imgtot.indexOf(el.src.replace(/^.*[\\\/]/, '')));
                         }
 
+                        var time = 0;
+
                         function setAll(){
-                            setAllA(imgtotA, "auctions");
-                            setAllA(imgtotD, "buynow");
-                            setAllA(imgtotN, "negotiations");
+                            console.log("bigdick");
+                            if(time == 0){
+                                setAllA(imgtotA, "auctions");
+                                setAllA(imgtotD, "buynow");
+                                setAllA(imgtotN, "negotiations");
+                                time++;
+                            }
                         }
 
                         function setAllA(img, position){
@@ -309,9 +350,7 @@ if($_SESSION['name'] !== ""&&$_SESSION['mdp']!==""&&$_SESSION['Atype']!==""){
                                 var positionA = document.getElementById(position);
                                 positionA.appendChild(elemImgA);
                             }
-                            document.getElementById("All available items").onclick = function(){
-                                change(this, event);
-                            }
+
                         }
                     </script>
 
@@ -541,9 +580,9 @@ if($_SESSION['name'] !== ""&&$_SESSION['mdp']!==""&&$_SESSION['Atype']!==""){
             <h3 style="text-decoration: underline; text-align: center;">Bienvenue dans votre centre de contrôle:</h3>
             <div id=Panier>
                 <h3>Mon Panier</h3>
-                    <img class="unselected" src="img2.jpg" height="100px" width="100px" onclick="gotoitem(this, event)">
-                    <img class="unselected" src="img2.jpg" height="100px" width="100px" onclick="gotoitem(this, event)">
-                    <img class="unselected" src="img2.jpg" height="100px" width="100px" onclick="gotoitem(this, event)">
+                    <div id="panier">
+
+                    </div>
                     <br>
                     <?php
                         if($Atype=="client")
@@ -699,9 +738,16 @@ function gotoitem(el, e){
   document.getElementsByClassName("mainpic")[0].src = el.src;
 }
 
-function addItem(el, e){
-   document.getElementsByClassName("unselected")[0].src = document.getElementsByClassName("mainpic")[0].src;
-   document.getElementsByClassName("unselected")[0].className = "selected";
+var test = 0;
+
+function addItem(){
+    if(test == 0)
+    {
+        var basketImg = <?php echo json_encode($itemBP); ?>;
+        console.log(basketImg[0]);
+        setAllA(basketImg,'panier');
+        test++;
+    }
 }
 
 function wishlist(el, e){

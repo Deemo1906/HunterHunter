@@ -62,10 +62,6 @@ function gotoitem(el, e){
   document.getElementsByClassName("mainpic")[0].src = el.src;
 }
 
-function addItem(el, e){
-   document.getElementsByClassName("unselected")[0].src = document.getElementsByClassName("mainpic")[0].src;
-   document.getElementsByClassName("unselected")[0].className = "selected";
-}
 
 function wishlist(el, e){
   document.getElementsByClassName("unselectedW")[0].src = document.getElementsByClassName("mainpic")[0].src;
