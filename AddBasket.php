@@ -35,7 +35,7 @@ session_start();
 
         		if($count==0)
         		{
-            	
+
         		$sql = "INSERT INTO panier (IdClient)
 	VALUES('$idClient')";
     		mysqli_query($db_handle,$sql);

@@ -134,6 +134,26 @@ if($dataB = mysqli_fetch_assoc($exec_sqlB)){
 }
 
 
+
+$itemBA = [];
+$imgBA = [];
+$sqlBA = "SELECT IdItem FROM auction where IdClient = '$idClient'";
+$exec_sqlBA = mysqli_query($db_handle,$sqlBA);
+while($dataBA = mysqli_fetch_assoc($exec_sqlBA)){
+    array_push($itemBA,$dataBA['IdItem']);
+}
+
+foreach($itemBA as &$itemw){
+    $sqlPA = "SELECT Photo FROM item where Iditem = '$itemw'";
+    $exec_sqlPA = mysqli_query($db_handle,$sqlPA);
+    $dataPA = mysqli_fetch_assoc($exec_sqlPA);
+    array_push($imgBA,$dataPA['Photo']);
+    console_log($imgBA[0]);
+}
+
+
+
+
 ?>
 
 
@@ -596,7 +616,6 @@ if($dataB = mysqli_fetch_assoc($exec_sqlB)){
             </div>
             <div id="currentBids" style ="text-align: center">
                 <h3>My current bids</h3>
-                <img id="testimg">
 
             </div>
             <div id=Wishlist>
@@ -743,8 +762,10 @@ function addItem(){
     if(test == 0)
     {
         var basketImg = <?php echo json_encode($itemBP); ?>;
+        var basketauction = <?php echo json_encode($imgBA); ?>;
         console.log(basketImg[0]);
         setAllA(basketImg,'panier');
+        setAllA(basketauction,'currentBids');
         test++;
     }
 }
