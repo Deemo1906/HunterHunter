@@ -392,6 +392,13 @@ console_log($itemBP[0]);
                     document.getElementById("errorbid").innerHTML = "your bid is too low";
                 }else{
                     document.getElementById("errorbid").innerHTML = "New bid has been set";
+                    var newimg = document.createElement("img");
+                    elemImgA.src = document.getElementsByClassName('mainpic')[0].src;
+                    elemImgA.style.height = "100px";
+                    elemImgA.style.width = "100px";
+                    elemImgA.onclick = function(){
+                    gotoitem(this, event);
+                    descA(this);};
                 }
             }
         </script>
@@ -609,9 +616,8 @@ console_log($itemBP[0]);
                         }
                     ?>
             </div>
-            <div id="currentBids" style ="text-align: center">
+            <div id="currentBids">
                 <h3>My current bids</h3>
-                <img id="testimg">
 
             </div>
             <div id=Wishlist>
