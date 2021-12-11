@@ -13,7 +13,7 @@ session_start();
 	$db_found = mysqli_select_db($db_handle, $database);
 
 
-	$imgName = $_GET['imgB'];
+	$imgName = $_GET['img'];
 	$Atype = $_SESSION['Atype'];
 	//$pseudo = $_SESSION['name'];
 	//echo"ca marche ptnn $imgName";

@@ -28,7 +28,6 @@ $sql3 = "SELECT Name,Description,Price,Category,Photo FROM item where Name LIKE 
 $sqlD = "SELECT * FROM item where SaleType = 'Direct'";
 $sqlA = "SELECT * FROM item where SaleType = 'Auction'";
 $sqlN = "SELECT * FROM item where SaleType = 'Negotiation'";
-$sqlB = "SELECT * FROM item where SaleType = 'Negotiation'";
 
 
 $resultA = mysqli_query($db_handle, $sqlA);
@@ -151,7 +150,7 @@ if($_SESSION['name'] !== ""&&$_SESSION['mdp']!==""&&$_SESSION['Atype']!==""){
             <a id="Home" class="active" onclick="change(this, event)">Home</a>
             <a id="All available items" onclick = "change(this, event), setAll()">All available items</a>
             <a id="Notifications" onclick="change(this, event)">Notifications</a>
-            <a id="My basket" onclick="change(this, event), addItem()">My basket</a>
+            <a id="My basket" onclick="change(this, event)">My basket</a>
             <a id="My account" onclick="change(this, event)">My account</a>
             <a id="Sell" onclick="change(this, event)">Sell</a>
             <a href='index.php?disconnect=true'id="Disconnect">Disconnect</a>
@@ -263,7 +262,6 @@ if($_SESSION['name'] !== ""&&$_SESSION['mdp']!==""&&$_SESSION['Atype']!==""){
                             document.getElementById("bid").style.visibility = "inherit";
                             document.getElementById("bidB").style.visibility = "inherit";
                             document.getElementById("namepicinput").value = imgtotA[indexImg];
-                            document.getElementById("namepicinputB").value = imgtotA[indexImg];
                             //console.log(imgtot.indexOf(el.src.replace(/^.*[\\\/]/, '')));
                         }
 
@@ -277,7 +275,6 @@ if($_SESSION['name'] !== ""&&$_SESSION['mdp']!==""&&$_SESSION['Atype']!==""){
                             document.getElementById("bid").style.visibility = "hidden";
                             document.getElementById("bidB").style.visibility = "hidden";
                             document.getElementById("namepicinput").value = imgtotN[indexImg];
-                            document.getElementById("namepicinputB").value = imgtotA[indexImg];
                             //console.log(imgtot.indexOf(el.src.replace(/^.*[\\\/]/, '')));
                         }
 
@@ -290,6 +287,7 @@ if($_SESSION['name'] !== ""&&$_SESSION['mdp']!==""&&$_SESSION['Atype']!==""){
                         function setAllA(img, position){
                             for(let i = 0; i<img.length;i++){
                                 var elemImgA = document.createElement("img");
+                                console.log("test");
                                 elemImgA.src = img[i];
                                 elemImgA.style.height = "100px";
                                 elemImgA.style.width = "100px";
@@ -361,8 +359,8 @@ if($_SESSION['name'] !== ""&&$_SESSION['mdp']!==""&&$_SESSION['Atype']!==""){
                     <dt id="demo"></dt>
                 </dl>
                 <form action="AddBasket.php" method='get'>
-                <input id="namepicinputB" type="text"  name="imgB" value="" style="visibility: hidden;position: absolute;">
-                <input type="submit" value="Add to basquet "onclick="newBid(this)">
+                <input id="namepicinput" type="text"  name="img" value="" style="visibility: hidden;position: absolute;">
+                <input type="submit" value="Add to basquet "onclick="addItem(this,event);newBid(this)">
 
                 </form>
                 <input type="button" value="Wishlist" onclick="wishlist(this,event)">
@@ -387,7 +385,6 @@ if($_SESSION['name'] !== ""&&$_SESSION['mdp']!==""&&$_SESSION['Atype']!==""){
                         document.getElementById("bid").style.visibility = "hidden";
                         document.getElementById("bidB").style.visibility = "hidden";
                         document.getElementById("namepicinput").value = imgtotD[indexImgD];
-                        document.getElementById("namepicinputB").value = imgtotA[indexImg];
                     }
                 </script>
             </div>
@@ -548,6 +545,9 @@ if($_SESSION['name'] !== ""&&$_SESSION['mdp']!==""&&$_SESSION['Atype']!==""){
             <h3 style="text-decoration: underline; text-align: center;">Bienvenue dans votre centre de contrôle:</h3>
             <div id=Panier>
                 <h3>Mon Panier</h3>
+                    <img class="unselected" src="img2.jpg" height="100px" width="100px" onclick="gotoitem(this, event)">
+                    <img class="unselected" src="img2.jpg" height="100px" width="100px" onclick="gotoitem(this, event)">
+                    <img class="unselected" src="img2.jpg" height="100px" width="100px" onclick="gotoitem(this, event)">
                     <br>
                     <?php
                         if($Atype=="client")
@@ -702,8 +702,9 @@ function gotoitem(el, e){
   document.getElementsByClassName("mainpic")[0].src = el.src;
 }
 
-function addItem(){
-    //setAllA(,'panier');
+function addItem(el, e){
+   document.getElementsByClassName("unselected")[0].src = document.getElementsByClassName("mainpic")[0].src;
+   document.getElementsByClassName("unselected")[0].className = "selected";
 }
 
 function wishlist(el, e){
