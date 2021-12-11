@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : ven. 10 déc. 2021 à 10:47
+-- Généré le : sam. 11 déc. 2021 à 10:12
 -- Version du serveur :  5.7.31
 -- Version de PHP : 7.3.21
 
@@ -68,7 +68,7 @@ CREATE TABLE IF NOT EXISTS `client` (
   `DateExp` date DEFAULT NULL,
   `CardCode` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`IdClient`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `client`
@@ -76,7 +76,8 @@ CREATE TABLE IF NOT EXISTS `client` (
 
 INSERT INTO `client` (`IdClient`, `Name`, `Mail`, `Pseudo`, `Password`, `Adress`, `City`, `PostalCode`, `Country`, `NumTel`, `CardType`, `CardNum`, `CardName`, `DateExp`, `CardCode`) VALUES
 (4, 'flo', 'flo@gmail.com', 'flolebest', 'caca', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(5, 'florian', 'pussyslayer@ph.com', 'pussyslayer', 'pussy', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+(5, 'florian', 'pussyslayer@ph.com', 'pussyslayer', 'pussy', 'boulevard de grenelle', 'paris', '75015', 'France', '0637397507', 'visa', '497401827613535', 'cardname', '2021-12-31', '444'),
+(6, 'Varus', 'grosse@gmail.com', 'mabite', 'cum', 'avenue de la gare ', 'mormant', '77720', 'France', '0637397507', 'mastercard', '0000000000001', 'cardname', '2022-01-09', '000');
 
 -- --------------------------------------------------------
 
@@ -95,9 +96,16 @@ CREATE TABLE IF NOT EXISTS `commande` (
   `NomAcheteur` varchar(255) NOT NULL,
   `NumItem` int(11) NOT NULL,
   `IdPanier` int(11) NOT NULL,
-  PRIMARY KEY (`IdCommande`),
-  KEY `IdPanier` (`IdPanier`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  PRIMARY KEY (`IdCommande`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `commande`
+--
+
+INSERT INTO `commande` (`IdCommande`, `Adress`, `City`, `PostalCode`, `Country`, `Price`, `NomAcheteur`, `NumItem`, `IdPanier`) VALUES
+(1, 'boulevard de grenelle', 'paris', '75015', 'France', 150000, 'florian', 2, 13),
+(2, 'boulevard de grenelle', 'paris', '75015', 'France', 100000, 'florian', 7, 13);
 
 -- --------------------------------------------------------
 
@@ -166,7 +174,7 @@ CREATE TABLE IF NOT EXISTS `login` (
   `Password` varchar(255) NOT NULL,
   `AccountType` varchar(255) NOT NULL,
   PRIMARY KEY (`IdLogin`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `login`
@@ -175,7 +183,8 @@ CREATE TABLE IF NOT EXISTS `login` (
 INSERT INTO `login` (`IdLogin`, `Pseudo`, `Password`, `AccountType`) VALUES
 (1, 'Netero', 'HXH2021', 'admin'),
 (13, 'Deemo1906', '19062001Hh', 'vendeur'),
-(14, 'pussyslayer', 'pussy', 'client');
+(14, 'pussyslayer', 'pussy', 'client'),
+(17, 'mabite', 'cum', 'client');
 
 -- --------------------------------------------------------
 
@@ -189,7 +198,7 @@ CREATE TABLE IF NOT EXISTS `panier` (
   `IdClient` int(11) NOT NULL,
   PRIMARY KEY (`IdPanier`),
   KEY `IdClient` (`IdClient`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -219,12 +228,6 @@ INSERT INTO `vendeur` (`IdVendeur`, `Name`, `Mail`, `Pseudo`, `Photo`, `Password
 --
 -- Contraintes pour les tables déchargées
 --
-
---
--- Contraintes pour la table `commande`
---
-ALTER TABLE `commande`
-  ADD CONSTRAINT `commande_ibfk_1` FOREIGN KEY (`IdPanier`) REFERENCES `panier` (`IdPanier`);
 
 --
 -- Contraintes pour la table `comporter`
