@@ -98,6 +98,51 @@ if($_SESSION['name'] !== ""&&$_SESSION['mdp']!==""&&$_SESSION['Atype']!==""){
 }
 
 
+$sqlt = "SELECT IdClient FROM client where Pseudo = '".$_SESSION['name']."'";
+$exec_sqlt = mysqli_query($db_handle,$sqlt);
+$dataC = mysqli_fetch_assoc($exec_sqlt);
+
+$idClient=$dataC['IdClient'];
+
+
+
+
+$sqlB = "SELECT IdPanier FROM panier where IdClient = '$idClient'";
+$exec_sqlB = mysqli_query($db_handle,$sqlB);
+$dataB = mysqli_fetch_assoc($exec_sqlB);
+
+$idB = $dataB['IdPanier'];
+
+
+
+$idsItem = [];
+$sqlI = "SELECT IdItem FROM comporter where IdPanier = '$idB'";
+$exec_sqlI = mysqli_query($db_handle,$sqlI);
+
+while($dataI = mysqli_fetch_assoc($exec_sqlI)){
+     array_push($idsItem,$dataI['IdItem']);
+}
+
+
+
+
+$itemBP = [];
+foreach($idsItem as &$itemz){
+    $sqlP = "SELECT Photo FROM item where Iditem = '$itemz'";
+    $exec_sqlP = mysqli_query($db_handle,$sqlP);
+    $dataP = mysqli_fetch_assoc($exec_sqlP);
+    array_push($itemBP,$dataP['Photo']);
+    
+}
+
+console_log($itemBP[0]);
+
+
+
+
+
+
+
 ?>
 
 
@@ -246,6 +291,7 @@ if($_SESSION['name'] !== ""&&$_SESSION['mdp']!==""&&$_SESSION['Atype']!==""){
                     <img class="imgA" src="17.jpg" onclick="gotoitem(this, event); descA(this) ">
 
                     <script type = "text/javascript">
+
                         var imgtotD = <?php echo json_encode($imgD); ?>;
                         var imgtotA = <?php echo json_encode($imgA); ?>;
                         var imgtotN = <?php echo json_encode($imgN); ?>;
@@ -286,6 +332,7 @@ if($_SESSION['name'] !== ""&&$_SESSION['mdp']!==""&&$_SESSION['Atype']!==""){
 
                         function setAllA(img, position){
                             for(let i = 0; i<img.length;i++){
+                                console.log(img.length);
                                 var elemImgA = document.createElement("img");
                                 console.log("test");
                                 elemImgA.src = img[i];
@@ -310,6 +357,14 @@ if($_SESSION['name'] !== ""&&$_SESSION['mdp']!==""&&$_SESSION['Atype']!==""){
                             document.getElementById("All available items").onclick = function(){
                                 change(this, event);
                             }
+                            function addItem(){
+                                console.log("test");
+                                var basketImg = <?php echo json_encode($itemBP); ?>;
+                                console.log(basketImg[0]);
+                                setAllA(basketImg,'panier');
+                            }
+
+                            addItem();
                         }
                     </script>
 
@@ -538,9 +593,15 @@ if($_SESSION['name'] !== ""&&$_SESSION['mdp']!==""&&$_SESSION['Atype']!==""){
             <h3 style="text-decoration: underline; text-align: center;">Bienvenue dans votre centre de contrôle:</h3>
             <div id=Panier>
                 <h3>Mon Panier</h3>
+<<<<<<< HEAD
                     <img class="unselected" src="img2.jpg" height="100px" width="100px" onclick="gotoitem(this, event)">
                     <img class="unselected" src="img2.jpg" height="100px" width="100px" onclick="gotoitem(this, event)">
                     <img class="unselected" src="img2.jpg" height="100px" width="100px" onclick="gotoitem(this, event)">
+=======
+                <div id="panier">
+
+                </div>
+>>>>>>> parent of 23644c0 (Revert "test")
                     <br>
                     <?php
                         if($Atype=="client")
@@ -696,10 +757,14 @@ function gotoitem(el, e){
   document.getElementsByClassName("mainpic")[0].src = el.src;
 }
 
+<<<<<<< HEAD
 function addItem(el, e){
    document.getElementsByClassName("unselected")[0].src = document.getElementsByClassName("mainpic")[0].src;
    document.getElementsByClassName("unselected")[0].className = "selected";
 }
+=======
+
+>>>>>>> parent of 23644c0 (Revert "test")
 
 function wishlist(el, e){
   document.getElementsByClassName("unselectedW")[0].src = document.getElementsByClassName("mainpic")[0].src;
