@@ -394,7 +394,7 @@ if($dataB = mysqli_fetch_assoc($exec_sqlB)){
                 </dl>
                 <form action="AddBasket.php" method='get'>
                 <input id="namepicinputB" type="text"  name="img" value="" style="visibility: hidden;position: absolute;">
-                <input type="submit" value="Add to basquet "onclick="addItem(this,event)">
+                <input type="submit" value="Add to basket "onclick="addItem(this,event)">
 
                 </form>
                 <input type="button" value="Wishlist" onclick="wishlist(this,event)">
@@ -606,7 +606,6 @@ if($dataB = mysqli_fetch_assoc($exec_sqlB)){
                 <img class="unselectedW" src="img2.jpg" height="100px" width="100px" onclick="gotoitem(this, event)">
                 <img class="unselectedW" src="img2.jpg" height="100px" width="100px" onclick="gotoitem(this, event)">
                 <br>
-                <input type="submit" value="Ajouter au panier" onclick="addbasquet(this,event)">
             </div>
         </div>
         <div class="All available items" style="visibility: hidden; position: absolute;">
