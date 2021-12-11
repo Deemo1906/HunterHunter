@@ -28,6 +28,7 @@ $sql3 = "SELECT Name,Description,Price,Category,Photo FROM item where Name LIKE 
 $sqlD = "SELECT * FROM item where SaleType = 'Direct'";
 $sqlA = "SELECT * FROM item where SaleType = 'Auction'";
 $sqlN = "SELECT * FROM item where SaleType = 'Negotiation'";
+$sqlB = "SELECT * FROM item where SaleType = 'Negotiation'";
 
 
 $resultA = mysqli_query($db_handle, $sqlA);
@@ -98,51 +99,6 @@ if($_SESSION['name'] !== ""&&$_SESSION['mdp']!==""&&$_SESSION['Atype']!==""){
 }
 
 
-$sqlt = "SELECT IdClient FROM client where Pseudo = '".$_SESSION['name']."'";
-$exec_sqlt = mysqli_query($db_handle,$sqlt);
-$dataC = mysqli_fetch_assoc($exec_sqlt);
-
-$idClient=$dataC['IdClient'];
-
-
-
-
-$sqlB = "SELECT IdPanier FROM panier where IdClient = '$idClient'";
-$exec_sqlB = mysqli_query($db_handle,$sqlB);
-$dataB = mysqli_fetch_assoc($exec_sqlB);
-
-$idB = $dataB['IdPanier'];
-
-
-
-$idsItem = [];
-$sqlI = "SELECT IdItem FROM comporter where IdPanier = '$idB'";
-$exec_sqlI = mysqli_query($db_handle,$sqlI);
-
-while($dataI = mysqli_fetch_assoc($exec_sqlI)){
-     array_push($idsItem,$dataI['IdItem']);
-}
-
-
-
-
-$itemBP = [];
-foreach($idsItem as &$itemz){
-    $sqlP = "SELECT Photo FROM item where Iditem = '$itemz'";
-    $exec_sqlP = mysqli_query($db_handle,$sqlP);
-    $dataP = mysqli_fetch_assoc($exec_sqlP);
-    array_push($itemBP,$dataP['Photo']);
-    
-}
-
-console_log($itemBP[0]);
-
-
-
-
-
-
-
 ?>
 
 
@@ -195,7 +151,7 @@ console_log($itemBP[0]);
             <a id="Home" class="active" onclick="change(this, event)">Home</a>
             <a id="All available items" onclick = "change(this, event), setAll()">All available items</a>
             <a id="Notifications" onclick="change(this, event)">Notifications</a>
-            <a id="My basket" onclick="change(this, event)">My basket</a>
+            <a id="My basket" onclick="change(this, event), addItem()">My basket</a>
             <a id="My account" onclick="change(this, event)">My account</a>
             <a id="Sell" onclick="change(this, event)">Sell</a>
             <a href='index.php?disconnect=true'id="Disconnect">Disconnect</a>
@@ -291,7 +247,6 @@ console_log($itemBP[0]);
                     <img class="imgA" src="17.jpg" onclick="gotoitem(this, event); descA(this) ">
 
                     <script type = "text/javascript">
-
                         var imgtotD = <?php echo json_encode($imgD); ?>;
                         var imgtotA = <?php echo json_encode($imgA); ?>;
                         var imgtotN = <?php echo json_encode($imgN); ?>;
@@ -334,7 +289,6 @@ console_log($itemBP[0]);
 
                         function setAllA(img, position){
                             for(let i = 0; i<img.length;i++){
-                                console.log(img.length);
                                 var elemImgA = document.createElement("img");
                                 elemImgA.src = img[i];
                                 elemImgA.style.height = "100px";
@@ -358,14 +312,6 @@ console_log($itemBP[0]);
                             document.getElementById("All available items").onclick = function(){
                                 change(this, event);
                             }
-                            function addItem(){
-                                console.log("test");
-                                var basketImg = <?php echo json_encode($itemBP); ?>;
-                                console.log(basketImg[0]);
-                                setAllA(basketImg,'panier');
-                            }
-
-                            addItem();
                         }
                     </script>
 
@@ -602,9 +548,6 @@ console_log($itemBP[0]);
             <h3 style="text-decoration: underline; text-align: center;">Bienvenue dans votre centre de contrôle:</h3>
             <div id=Panier>
                 <h3>Mon Panier</h3>
-                <div id="panier">
-
-                </div>
                     <br>
                     <?php
                         if($Atype=="client")
@@ -759,7 +702,9 @@ function gotoitem(el, e){
   document.getElementsByClassName("mainpic")[0].src = el.src;
 }
 
-
+function addItem(){
+    //setAllA(,'panier');
+}
 
 function wishlist(el, e){
   document.getElementsByClassName("unselectedW")[0].src = document.getElementsByClassName("mainpic")[0].src;
