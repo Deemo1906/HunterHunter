@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : sam. 11 déc. 2021 à 13:39
+-- Généré le : sam. 11 déc. 2021 à 10:12
 -- Version du serveur :  5.7.31
 -- Version de PHP : 7.3.21
 
@@ -43,18 +43,6 @@ CREATE TABLE IF NOT EXISTS `admin` (
 
 INSERT INTO `admin` (`IdAdmin`, `Name`, `Mail`, `Pseudo`, `Password`) VALUES
 (1, 'NPFH', 'hugo.haidar@edu.ece.fr', 'Netero', 'HXH2021');
-
--- --------------------------------------------------------
-
---
--- Structure de la table `auction`
---
-
-DROP TABLE IF EXISTS `auction`;
-CREATE TABLE IF NOT EXISTS `auction` (
-  `IdClient` int(11) NOT NULL,
-  `IdItem` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -109,7 +97,7 @@ CREATE TABLE IF NOT EXISTS `commande` (
   `NumItem` int(11) NOT NULL,
   `IdPanier` int(11) NOT NULL,
   PRIMARY KEY (`IdCommande`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `commande`
@@ -117,11 +105,7 @@ CREATE TABLE IF NOT EXISTS `commande` (
 
 INSERT INTO `commande` (`IdCommande`, `Adress`, `City`, `PostalCode`, `Country`, `Price`, `NomAcheteur`, `NumItem`, `IdPanier`) VALUES
 (1, 'boulevard de grenelle', 'paris', '75015', 'France', 150000, 'florian', 2, 13),
-(2, 'boulevard de grenelle', 'paris', '75015', 'France', 100000, 'florian', 7, 13),
-(3, 'boulevard de grenelle', 'paris', '75015', 'France', 150000, 'florian', 2, 14),
-(4, 'boulevard de grenelle', 'paris', '75015', 'France', 30000, 'florian', 10, 14),
-(5, 'boulevard de grenelle', 'paris', '75015', 'France', 150000, 'florian', 2, 15),
-(6, 'boulevard de grenelle', 'paris', '75015', 'France', 100000, 'florian', 7, 15);
+(2, 'boulevard de grenelle', 'paris', '75015', 'France', 100000, 'florian', 7, 13);
 
 -- --------------------------------------------------------
 
@@ -136,13 +120,6 @@ CREATE TABLE IF NOT EXISTS `comporter` (
   PRIMARY KEY (`IdItem`,`IdPanier`),
   KEY `IdPanier` (`IdPanier`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Déchargement des données de la table `comporter`
---
-
-INSERT INTO `comporter` (`IdItem`, `IdPanier`) VALUES
-(2, 16);
 
 -- --------------------------------------------------------
 
@@ -221,14 +198,7 @@ CREATE TABLE IF NOT EXISTS `panier` (
   `IdClient` int(11) NOT NULL,
   PRIMARY KEY (`IdPanier`),
   KEY `IdClient` (`IdClient`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
-
---
--- Déchargement des données de la table `panier`
---
-
-INSERT INTO `panier` (`IdPanier`, `IdClient`) VALUES
-(16, 5);
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
