@@ -80,6 +80,9 @@
 
 				echo"$NumItem  $Price<br>";
 
+				$lastReq="DELETE FROM item where Iditem='$NumItem'";
+				mysqli_query($db_handle,$lastReq);
+
 
 				$requete = "SELECT count(*),IdCommande FROM commande where 
               IdPanier = '".$IdPanier."'  ";
