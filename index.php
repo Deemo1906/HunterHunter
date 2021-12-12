@@ -21,10 +21,7 @@ function console_log($output, $with_script_tags = true) {
 $sql = "";
 //Si la BDD existe
 if ($db_found) {
-$sql = "SELECT Name,Description,Price,Category,Photo FROM item where Name='Scarlet eyes'";
-$sql2 = "SELECT Name,Description,Price,Category,Photo FROM item where Name LIKE 'Son%'";
-$sql3 = "SELECT Name,Description,Price,Category,Photo FROM item where Name LIKE 'Gun%'";
-
+// recuperation des items de tout les types
 $sqlD = "SELECT * FROM item where SaleType = 'Direct'";
 $sqlA = "SELECT * FROM item where SaleType = 'Auction'";
 $sqlN = "SELECT * FROM item where SaleType = 'Negotiation'";
@@ -34,7 +31,7 @@ $resultA = mysqli_query($db_handle, $sqlA);
 $resultD = mysqli_query($db_handle, $sqlD);
 $resultN = mysqli_query($db_handle, $sqlN);
 
-
+//Creation d'array pour simplifier le passage en js 
 $imgA = [];
 $descA = [];
 $priceA = [];
@@ -46,6 +43,8 @@ $imgN = [];
 $descN = [];
 $priceN = [];
 $nameN = [];
+
+//remplissage de toutes les array cree
 while($dataA = mysqli_fetch_assoc($resultA)){
     array_push($imgA,$dataA['Photo']);
     array_push($descA,$dataA['Description']);
@@ -64,29 +63,8 @@ while($dataN = mysqli_fetch_assoc($resultN)){
     array_push($nameN,$dataN['Name']);
 }
 
-$result = mysqli_query($db_handle, $sql);
-$result2 = mysqli_query($db_handle, $sql2);
-$result3 = mysqli_query($db_handle, $sql3);
 
-
-// 3 Newest items
-$data = mysqli_fetch_assoc($result);
-$data2 = mysqli_fetch_assoc($result2);
-$data3 = mysqli_fetch_assoc($result3);
-
-// $img = $data['Photo'];
-// $img2 = $data2['Photo'];
-// $img3 = $data3['Photo'];
-// $text = $data['Name'];
-// $text2 = $data2['Name'];
-// $text3 = $data3['Name'];
-// $desc = $data['Description'];
-// $desc2 = $data2['Description'];
-// $desc3 = $data3['Description'];
-// $price = $data['Price'];
-// $price2 = $data2['Price'];
-// $price3 = $data3['Price'];
-
+// Recuperation des info de la session
 if($_SESSION['name'] !== ""&&$_SESSION['mdp']!==""&&$_SESSION['Atype']!==""){
                     $pseudo = $_SESSION['name'];
                     $mdp = $_SESSION['mdp'];
@@ -97,7 +75,7 @@ if($_SESSION['name'] !== ""&&$_SESSION['mdp']!==""&&$_SESSION['Atype']!==""){
 
 }
 
-
+// Recuperation des informations necessaire pour le panier
 $sqlt = "SELECT IdClient FROM client where Pseudo = '".$_SESSION['name']."'";
 $exec_sqlt = mysqli_query($db_handle,$sqlt);
 $dataC = mysqli_fetch_assoc($exec_sqlt);
@@ -105,7 +83,7 @@ $dataC = mysqli_fetch_assoc($exec_sqlt);
 $idClient=$dataC['IdClient'];
 
 
-
+// Information pour le panier d'item
 $itemBP = [];
 $sqlB = "SELECT IdPanier FROM panier where IdClient = '$idClient'";
 $exec_sqlB = mysqli_query($db_handle,$sqlB);
@@ -134,7 +112,7 @@ if($dataB = mysqli_fetch_assoc($exec_sqlB)){
 }
 
 
-
+// Informations pour le panier des encheres
 $itemBA = [];
 $imgBA = [];
 $sqlBA = "SELECT IdItem FROM auction where IdClient = '$idClient'";
@@ -202,6 +180,7 @@ foreach($itemBA as &$itemw){
 
 
     <div id="Wrapper">
+        <!-- Navigation de la topbar -->
         <div class="topnav">
             <a id="Home" class="active" onclick="change(this, event)">Home</a>
             <a id="All available items" onclick = "change(this, event), setAll()">All available items</a>
@@ -226,6 +205,7 @@ foreach($itemBA as &$itemw){
                  }
             ?>
         </div>
+        <!-- Page d'acceuil -->
         <div class="Home">
             <!-- New items -->
             <div id = "left">
@@ -255,7 +235,7 @@ foreach($itemBA as &$itemw){
                     echo " <div class='text'>$nameD[2]</div>";
                     ?>
                     </div>
-                    <!-- Next and previous buttons -->
+                    <!-- Boutton pour les slides d'image -->
                     <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
                     <a class="next" onclick="plusSlides(1)">&#10095;</a>
                 </div>
@@ -266,8 +246,6 @@ foreach($itemBA as &$itemw){
                         <?php
                         echo "<dl> $priceD[0] </dl>";
                         ?>
-                        <dt>Date of arrival</dt>
-                        <dl>19-06-2001</dl>
                     </dl>
                 </div>
                 <div class="info">
@@ -276,8 +254,6 @@ foreach($itemBA as &$itemw){
                         <?php
                         echo "<dl> $priceD[1] </dl>";
                         ?>
-                        <dt>Date of arrival</dt>
-                        <dl>19-06-2001</dl>
                     </dl>
                 </div>
                 <div class="info">
@@ -286,8 +262,6 @@ foreach($itemBA as &$itemw){
                         <?php
                         echo "<dl> $priceD[2] </dl>";
                         ?>
-                        <dt>Date of arrival</dt>
-                        <dl>19-06-2001</dl>
                     </dl>
                 </div>
             </div>
@@ -307,7 +281,7 @@ foreach($itemBA as &$itemw){
                         for (let i = 0; i<3;i++) {
                             document.getElementsByClassName("imgA")[i].src =imgtotA[i];
                         };
-
+                        //recuperation des informations de chaques item "auction" graces aux array cree en haut de la page
                         function descA(el){
                             var desctot = <?php echo json_encode($descA); ?>;
                             var pricetot = <?php echo json_encode($priceA); ?>;
@@ -320,7 +294,7 @@ foreach($itemBA as &$itemw){
                             document.getElementById("namepicinputB").value = imgtotA[indexImg];
                             //console.log(imgtot.indexOf(el.src.replace(/^.*[\\\/]/, '')));
                         }
-
+                        //recuperation des informations de chaques item "Negotiation" graces aux array cree en haut de la page
                         function descN(el){
                             var desctot = <?php echo json_encode($descN); ?>;
                             console.log(desctot[0])
@@ -336,7 +310,8 @@ foreach($itemBA as &$itemw){
                         }
 
                         var time = 0;
-
+                        
+                        //Creation de la page "all available item"
                         function setAll(){
                             console.log("bigdick");
                             if(time == 0){
@@ -390,6 +365,7 @@ foreach($itemBA as &$itemw){
         </div>
 
         <script type = "text/javascript">
+            //Verification des prix de l'enchere
             function newBid(el){
                 var bid = document.getElementById("bid").value;
                 var current = document.getElementById("priceItem").innerHTML;
@@ -400,6 +376,7 @@ foreach($itemBA as &$itemw){
                 }
             }
         </script>
+        <!-- Page d'information des items -->
         <div id="itempageB" style="visibility: hidden;position: absolute;">
             <div id="img3040" >
                 <img class="mainpic">
@@ -430,6 +407,7 @@ foreach($itemBA as &$itemw){
                 <h3 id="description"></h3>
                 <script type = "text/javascript">
                     imgtotD = <?php echo json_encode($imgD); ?>;
+                    // Informations sur les object a achat direct
                     function setdesc(el){
                         var desctotD = <?php echo json_encode($descD); ?>;
                         var pricetot = <?php echo json_encode($priceD); ?>;
@@ -447,6 +425,7 @@ foreach($itemBA as &$itemw){
 
         </div>
 
+        <!-- Page d'information du compte different dependant du type de compte -->
         <div class="My account" style="visibility: hidden; position: absolute;">
             <div id="img3040">
                 <img src="netero.jpg" style="max-width: 400px;max-height: 400px; width: 200%;">
@@ -596,6 +575,7 @@ foreach($itemBA as &$itemw){
             </div>
         </div>
 
+        <!-- Panier client remplie dynamiquement avec les informations de la bdd -->
         <div class="My basket" style="visibility: hidden; position: absolute;">
             <h3 style="text-decoration: underline; text-align: center;">Bienvenue dans votre centre de contrôle:</h3>
             <div id=Panier>
@@ -627,6 +607,8 @@ foreach($itemBA as &$itemw){
                 <br>
             </div>
         </div>
+
+        <!-- Page de tout les items (dynamiquement actualiser) -->
         <div class="All available items" style="visibility: hidden; position: absolute;">
             <div id="trending" style="visibility: hidden; position: absolute;">
                 <h3>En ce moment:</h3>
@@ -644,6 +626,8 @@ foreach($itemBA as &$itemw){
                 <h3>Buy now:</h3>
             </div>
         </div>
+
+
         <div class="Notifications" style="visibility: hidden; position: absolute;">
             <h3 id="demo"></h3>
             <div id="venteperso">
@@ -679,20 +663,13 @@ foreach($itemBA as &$itemw){
                 </form>
             </div>
         </div>
-        <!-- <div id="Sell" style="display:none">
-             <form action="">
-            <h3 style="text-decoration: underline; text-align: center;">Entrez ci-dessous les critères de l'article que vous aouhaitez vendre:</h3><br>
-            <h3>Nom de l'article: </h3><input type="text" name="" id=""><br>
-            <h3>Prix de l'article (en €): </h3><input type="number" name="" id="" min=0><br>
-            <h3>Date limite de vente de l'article: </h3><input type="date" name="" id=""><br>
-            <h3>Heure limite de vente de l'article: </h3><input type="time" name="" id=""><br>
-            <h3>Photo de l'article: </h3><input type="file" name="" id=""><br>
-            <input type="submit" value="Mettre l'article en vente">
-         </form>
-        </div> -->
+
+
+
     </div>
     <script >
-        function change(el, e){
+        // function de changement de page
+    function change(el, e){
     e.preventDefault();
     if(document.getElementById("itempageB").style.visibility == "visible"){
       document.getElementById("itempageB").style.visibility = "hidden";
@@ -739,7 +716,7 @@ function showSlides(n) {
   info[slideIndex-1].style.display = "block";
 }
 
-
+//Passage a la  page d'item avec toutes les informations
 function gotoitem(el, e){
   e.preventDefault();
 
@@ -758,6 +735,8 @@ function gotoitem(el, e){
 
 var test = 0;
 
+
+// Ajouter les items dynamiquement sur le panier 
 function addItem(){
     if(test == 0)
     {
@@ -770,21 +749,12 @@ function addItem(){
     }
 }
 
+
+//ajout des items de la wishlist
 function wishlist(el, e){
   document.getElementsByClassName("unselectedW")[0].src = document.getElementsByClassName("mainpic")[0].src;
   document.getElementsByClassName("unselectedW")[0].className = "selectedW";
 }
-
-
-function addbasquet(el, e){
-  while(document.getElementsByClassName("selectedW").length != 0){
-    document.getElementsByClassName("unselected")[0].src = document.getElementsByClassName("selectedW")[0].src;
-   document.getElementsByClassName("unselected")[0].className = "selected";
-   document.getElementsByClassName("selectedW")[0].className = "unselectedW";
-  }
-}
-
-
 
 
   function GioIsGod()

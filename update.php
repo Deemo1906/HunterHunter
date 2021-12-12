@@ -1,6 +1,6 @@
 <?php
 session_start();
-
+// update des informations des "auction"
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -35,7 +35,7 @@ $exec_sql_client = mysqli_query($conn,$sql_idclient);
 
 
 
-
+// Verification des prix proposer vs prix de la bdd
 if ($pricefin < $bid) {
     $send = "UPDATE item SET Price = '$bid' WHERE Photo = '$imgName'";
 
