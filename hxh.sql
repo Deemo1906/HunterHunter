@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : sam. 11 déc. 2021 à 13:39
+-- Généré le : Dim 12 déc. 2021 à 15:41
 -- Version du serveur :  5.7.31
 -- Version de PHP : 7.3.21
 
@@ -82,15 +82,6 @@ CREATE TABLE IF NOT EXISTS `client` (
   PRIMARY KEY (`IdClient`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
---
--- Déchargement des données de la table `client`
---
-
-INSERT INTO `client` (`IdClient`, `Name`, `Mail`, `Pseudo`, `Password`, `Adress`, `City`, `PostalCode`, `Country`, `NumTel`, `CardType`, `CardNum`, `CardName`, `DateExp`, `CardCode`) VALUES
-(4, 'flo', 'flo@gmail.com', 'flolebest', 'caca', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(5, 'florian', 'pussyslayer@ph.com', 'pussyslayer', 'pussy', 'boulevard de grenelle', 'paris', '75015', 'France', '0637397507', 'visa', '497401827613535', 'cardname', '2021-12-31', '444'),
-(6, 'Varus', 'grosse@gmail.com', 'mabite', 'cum', 'avenue de la gare ', 'mormant', '77720', 'France', '0637397507', 'mastercard', '0000000000001', 'cardname', '2022-01-09', '000');
-
 -- --------------------------------------------------------
 
 --
@@ -111,18 +102,6 @@ CREATE TABLE IF NOT EXISTS `commande` (
   PRIMARY KEY (`IdCommande`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
---
--- Déchargement des données de la table `commande`
---
-
-INSERT INTO `commande` (`IdCommande`, `Adress`, `City`, `PostalCode`, `Country`, `Price`, `NomAcheteur`, `NumItem`, `IdPanier`) VALUES
-(1, 'boulevard de grenelle', 'paris', '75015', 'France', 150000, 'florian', 2, 13),
-(2, 'boulevard de grenelle', 'paris', '75015', 'France', 100000, 'florian', 7, 13),
-(3, 'boulevard de grenelle', 'paris', '75015', 'France', 150000, 'florian', 2, 14),
-(4, 'boulevard de grenelle', 'paris', '75015', 'France', 30000, 'florian', 10, 14),
-(5, 'boulevard de grenelle', 'paris', '75015', 'France', 150000, 'florian', 2, 15),
-(6, 'boulevard de grenelle', 'paris', '75015', 'France', 100000, 'florian', 7, 15);
-
 -- --------------------------------------------------------
 
 --
@@ -136,13 +115,6 @@ CREATE TABLE IF NOT EXISTS `comporter` (
   PRIMARY KEY (`IdItem`,`IdPanier`),
   KEY `IdPanier` (`IdPanier`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Déchargement des données de la table `comporter`
---
-
-INSERT INTO `comporter` (`IdItem`, `IdPanier`) VALUES
-(2, 16);
 
 -- --------------------------------------------------------
 
@@ -180,9 +152,7 @@ INSERT INTO `item` (`Iditem`, `Name`, `Description`, `Price`, `SaleType`, `Categ
 (8, 'Killua\'s Skateboard', 'This board was owned by one of the most famous hunters in the world.', 12000, 'Negotiation', 'Regular', 'board.jpg', 1, 2),
 (9, 'Gon\'s fishing rod', 'A fishing rod that can be used for fishing or as a powerful weapon. It was once used in a Hunter exam.', 12000, 'Auction', 'Haut de gamme', 'fishing-rod.png', 1, 2),
 (10, 'Gun-gi board', 'Gungi is a two-player strategy board game from the Republic of East Gorteau.', 30000, 'Direct', 'Rare', 'gungi.jpg', 1, 2),
-(11, 'Poor Man\'s Rose', 'Poor Man\'s Rose is a chemo-explosive weapon of mass destruction and one of the most powerful and dangerous weapons in the world.', 500000, 'Direct', 'Rare', 'rose.png', 1, 2),
-(12, 'mabite', '', 1000000, 'direct', 'rare', 'photo', 1, 2),
-(13, 'long sword', '', 350, 'direct', 'common', 'photo', 1, 2);
+(11, 'Poor Man\'s Rose', 'Poor Man\'s Rose is a chemo-explosive weapon of mass destruction and one of the most powerful and dangerous weapons in the world.', 500000, 'Direct', 'Rare', 'rose.png', 1, 2);
 
 -- --------------------------------------------------------
 
@@ -205,9 +175,7 @@ CREATE TABLE IF NOT EXISTS `login` (
 
 INSERT INTO `login` (`IdLogin`, `Pseudo`, `Password`, `AccountType`) VALUES
 (1, 'Netero', 'HXH2021', 'admin'),
-(13, 'Deemo1906', '19062001Hh', 'vendeur'),
-(14, 'pussyslayer', 'pussy', 'client'),
-(17, 'mabite', 'cum', 'client');
+(13, 'Deemo1906', '19062001Hh', 'vendeur');
 
 -- --------------------------------------------------------
 
@@ -222,13 +190,6 @@ CREATE TABLE IF NOT EXISTS `panier` (
   PRIMARY KEY (`IdPanier`),
   KEY `IdClient` (`IdClient`)
 ) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
-
---
--- Déchargement des données de la table `panier`
---
-
-INSERT INTO `panier` (`IdPanier`, `IdClient`) VALUES
-(16, 5);
 
 -- --------------------------------------------------------
 
