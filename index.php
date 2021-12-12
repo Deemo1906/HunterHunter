@@ -187,7 +187,6 @@ foreach($itemBA as &$itemw){
             <a id="Notifications" onclick="change(this, event)">Notifications</a>
             <a id="My basket" onclick="change(this, event), addItem()">My basket</a>
             <a id="My account" onclick="change(this, event)">My account</a>
-            <a id="Sell" onclick="change(this, event)">Sell</a>
             <a href='index.php?disconnect=true'id="Disconnect">Disconnect</a>
             <?php
                  if(isset($_GET['disconnect']))
