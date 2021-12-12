@@ -359,6 +359,7 @@ foreach($itemBA as &$itemw){
                     </div>
                     <div id="right">
                         <h3 style="float: right; text-align: center;">Netero is re-elected president of the Hunter Association</h3>
+                        <h3 style="text-align: center;">To contact the association please send an email to contact@hunter-association.com</h3>
                     </div>
                 </div>
             </div>
@@ -630,7 +631,7 @@ foreach($itemBA as &$itemw){
 
         <div class="Notifications" style="visibility: hidden; position: absolute;">
             <h3 id="demo"></h3>
-            <div id="venteperso">
+            <div id="venteperso" style="text-align:center">
                 <h3 style="text-decoration: underline; text-align: center;">Vous avez acheté:</h3>
                 <img src="img2.jpg" height="100px" width="100px" onclick="gotoitem(this, event)">
                 <img src="img2.jpg" height="100px" width="100px" onclick="gotoitem(this, event)">
